@@ -1,7 +1,7 @@
 import argparse
 import json
 from pathlib import Path
-from oilspill.api.backend.vessels.surveillance import analyze_track
+from backend.vessels.surveillance import analyze_track
 
 
 def main():

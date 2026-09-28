@@ -115,8 +115,8 @@ def rank_observation_windows(case):
         "recommended_observation_window": ranked[0] if ranked else None,
         "ranked_windows": ranked,
         "score_meaning": (
-            "Synthetic simulation output. Heuristic forecast-separation score; "
-            "not a formal information gain, satellite scheduling guarantee, or probability."
+            "Heuristic forecast-separation score; not a formal information "
+            "gain, satellite scheduling guarantee, or probability."
         ),
     }
 

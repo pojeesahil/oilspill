@@ -3,7 +3,7 @@ import math
 import sys
 from pathlib import Path
 
-from oilspill.api.backend.ocean.drift import DriftConfig, move_position, parse_time
+from backend.ocean.drift import DriftConfig, move_position, parse_time
 
 
 def _distance_m(lat1, lon1, lat2, lon2, earth_radius_m):

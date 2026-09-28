@@ -3,7 +3,7 @@ import math
 import sys
 from pathlib import Path
 
-from oilspill.api.backend.ocean.drift import parse_time
+from backend.ocean.drift import parse_time
 
 
 def _distance_m(lat1, lon1, lat2, lon2, earth_radius_m):
@@ -140,10 +140,10 @@ def update_forecast(case):
         "particle_updates": updated_particles,
         "effective_sample_size": effective_sample_size,
         "corrected_forecast": corrected_forecast,
-        "score_meaning": (
-            "Synthetic simulation output. Forecast particles were reweighted "
-            "against the supplied observation and measurement uncertainty. "
-            "Results depend on the configured model and are not validated probabilities."
+        "interpretation": (
+            "Forecast particles were reweighted against the supplied "
+            "observation and measurement uncertainty. Results depend on "
+            "the configured model and are not validated probabilities."
         ),
     }
 

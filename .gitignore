@@ -7,7 +7,6 @@ __pycache__/
 *$py.class
 **/.pytest_cache/
 .pytest_cache/
-src
 # C extensions
 *.so
 

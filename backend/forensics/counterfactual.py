@@ -4,8 +4,8 @@ import random
 import sys
 from pathlib import Path
 
-from oilspill.api.backend.forensics.physical_consistency import score_ensemble
-from oilspill.api.backend.ocean.drift import (
+from backend.forensics.physical_consistency import score_ensemble
+from backend.ocean.drift import (
     DriftConfig,
     DriftForcing,
     parse_time,
@@ -179,54 +179,6 @@ def evaluate_counterfactuals(scenario):
             else None
         )
 
-        # Summarize component metrics across release hypotheses. Indeterminate
-        # components (notably orientation) remain null and are never implied
-        # to have contributed to the composite score.
-        component_names = (
-            "centroid_fraction",
-            "polygon_support_fraction",
-            "area_similarity",
-            "orientation_similarity",
-        )
-        aggregate_vector = None
-        if release_results:
-            aggregate_vector = {
-                name: round(
-                    sum(
-                        release["physical_consistency_vector"][name]
-                        for release in release_results
-                        if release["physical_consistency_vector"].get(name) is not None
-                    ) / max(1, sum(
-                        release["physical_consistency_vector"].get(name) is not None
-                        for release in release_results
-                    )),
-                    4,
-                ) if any(
-                    release["physical_consistency_vector"].get(name) is not None
-                    for release in release_results
-                ) else None
-                for name in component_names
-            }
-            aggregate_vector.update({
-                "physical_consistency_score": round(vector_score, 4),
-                "score_components_used": sorted({
-                    name
-                    for release in release_results
-                    for name in release["physical_consistency_vector"].get("score_components_used", [])
-                }),
-                "score_components_excluded": {
-                    name: reason
-                    for release in release_results
-                    for name, reason in release["physical_consistency_vector"].get("score_components_excluded", {}).items()
-                },
-                "interpretation": (
-                    "Candidate-level component values are unweighted means "
-                    "across release-time vectors, ignoring indeterminate values. "
-                    "The composite candidate score is endpoint-weighted. "
-                    "Orientation contributes only where it was determinate and used."
-                ),
-            })
-
         results.append({
             "mmsi": candidate["mmsi"],
             "physical_consistency_fraction": centroid_fraction,
@@ -235,17 +187,15 @@ def evaluate_counterfactuals(scenario):
                 if vector_score is not None
                 else None
             ),
-            "physical_consistency_vector": aggregate_vector,
             "compatible_simulations": compatible,
             "total_simulations": total,
             "release_hypotheses": release_results,
             "sample_trajectory": sample_trajectory,
             "score_meaning": (
-                "physical_consistency_fraction is the fraction of synthetic "
-                "endpoints within the configured centroid radius. The vector "
-                "score is a weighted geometry index using only determinate "
-                "metrics with positive configured weights; orientation is "
-                "excluded when indeterminate. Neither is a probability."
+                "physical_consistency_fraction is the fraction of simulated "
+                "endpoints within the configured centroid radius. "
+                "physical_consistency_score combines configured centroid, "
+                "polygon-support, area, and orientation metrics."
             ),
         })
 

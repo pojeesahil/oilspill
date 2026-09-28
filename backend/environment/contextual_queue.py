@@ -2,8 +2,8 @@ import json
 import sys
 from pathlib import Path
 
-from oilspill.api.backend.vessels.temporal_risk import calculate_temporal_risk
-from oilspill.api.backend.environment.dynamic_queue import build_dynamic_queue
+from backend.vessels.temporal_risk import calculate_temporal_risk
+from backend.environment.dynamic_queue import build_dynamic_queue
 
 
 def read_json(path):

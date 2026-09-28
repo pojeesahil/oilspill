@@ -1,7 +1,17 @@
 import os
+import sys
 import json
+from pathlib import Path
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+
+CURRENT_DIR = Path(__file__).resolve().parent
+WORKSPACE_ROOT = CURRENT_DIR.parent
+
+# Ensure workspace root and api dir are on sys.path so backend and api can be imported anywhere
+for path_str in [str(WORKSPACE_ROOT), str(CURRENT_DIR)]:
+    if path_str not in sys.path:
+        sys.path.insert(0, path_str)
 
 from backend.vessels.surveillance import analyze_track
 from backend.ocean.drift import simulate_drift, monte_carlo_hindcast, DriftForcing, DriftConfig
@@ -11,6 +21,11 @@ from backend.environment.opportunity import calculate_spill_opportunity
 from backend.environment.uncertainty import calculate_data_uncertainty
 from backend.environment.priority import calculate_surveillance_priority
 from backend.environment.pre_spill import evaluate_pre_spill_candidate, rank_surveillance_candidates
+
+try:
+    from api.ships_service import compute_multi_ship_data
+except ImportError:
+    from ships_service import compute_multi_ship_data
 
 app = FastAPI(title="SIH 143 API")
 
@@ -22,8 +37,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-WORKSPACE_ROOT = r"c:\Users\sahil\Documents\antig\sih143\we_have_to_win_sih"
-SCENARIOS_DIR = os.path.join(WORKSPACE_ROOT, "scenarios")
+SCENARIOS_DIR = os.path.join(str(WORKSPACE_ROOT), "scenarios")
 
 @app.get("/api/health")
 def health_check():
@@ -149,8 +163,6 @@ def get_scenario(name: str):
     with open(filepath, "r", encoding="utf-8-sig") as f:
         return json.load(f)
 
-from oilspill.api.ships_service import compute_multi_ship_data
-
 _CACHED_ANALYSIS = None
 
 def get_or_compute_analysis():
@@ -181,6 +193,63 @@ def refresh_analysis():
     _CACHED_ANALYSIS = compute_multi_ship_data()
     return {"status": "refreshed", "ships_count": len(_CACHED_ANALYSIS["ships"])}
 
+@app.get("/api/satellite/dead-reckoning")
+def get_dead_reckoning():
+    """Dark vessel AIS gap association with SAR satellite radar detections (Commit 3)."""
+    data = get_or_compute_analysis()
+    return data.get("dead_reckoning", {})
+
+@app.get("/api/satellite/observation-plan")
+def get_observation_plan():
+    """Reconnaissance observation window ranking and hypothesis separation (Commit 4)."""
+    data = get_or_compute_analysis()
+    return data.get("observation_plan", {})
+
+@app.get("/api/drift/forecast-update")
+def get_forecast_update():
+    """Bayesian particle filter forecast reweighting and assimilation (Commit 3)."""
+    data = get_or_compute_analysis()
+    return data.get("forecast_update", {})
+
+@app.get("/api/environment/response-queue")
+def get_response_queue():
+    """Automated operational response queue with rule-based actions (Commit 4)."""
+    data = get_or_compute_analysis()
+    return data.get("overall_response_queue", {})
+
+@app.get("/api/vessels/integrity")
+def get_vessel_integrity():
+    """AIS data integrity flags (speed jumps, abrupt turns, frozen coords) (Commit 5)."""
+    data = get_or_compute_analysis()
+    return data.get("ais_integrity", {})
+
+@app.get("/api/forensics/timeline")
+def get_investigation_timeline():
+    """Unified chronological investigation timeline with integrity flags (Commit 5)."""
+    data = get_or_compute_analysis()
+    return data.get("investigation_timeline", {})
+
+@app.get("/api/forensics/dossier")
+def get_investigation_dossier():
+    """Complete official investigation dossier (Commit 5)."""
+    data = get_or_compute_analysis()
+    return {
+        "dossier_html": data.get("dossier_html", ""),
+        "case_id": data.get("active_case", {}).get("case_id", "MUM-04"),
+    }
+
+@app.get("/api/environment/escape-intercept")
+def get_escape_intercept():
+    """Jurisdictional escape projection & Coast Guard intercept feasibility (Commit 7)."""
+    data = get_or_compute_analysis()
+    return data.get("escape_intercept", {})
+
+@app.get("/api/vessels/contextual-behavior")
+def get_contextual_behavior():
+    """Contextual behavioral anomaly indicators and Z-score deviation metrics (Commit 6)."""
+    data = get_or_compute_analysis()
+    return data.get("contextual_behavior", {})
+
 @app.get("/api/demo/full-analysis")
 def full_analysis():
     """Returns multi-ship intelligence with individual forecasts and backtracks."""
@@ -189,3 +258,7 @@ def full_analysis():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("api.server:app", host="127.0.0.1", port=8000, reload=True, app_dir=str(WORKSPACE_ROOT))

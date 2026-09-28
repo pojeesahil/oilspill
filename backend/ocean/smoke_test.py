@@ -2,7 +2,7 @@ import argparse
 import json
 from pathlib import Path
 
-from oilspill.api.backend.ocean.drift import (
+from backend.ocean.drift import (
     DriftConfig,
     DriftForcing,
     monte_carlo_hindcast,

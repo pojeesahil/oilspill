@@ -1,4 +1,4 @@
-from oilspill.api.backend.environment.impact import forecast_hypothetical_impact
+from backend.environment.impact import forecast_hypothetical_impact
 
 
 def _check_score(name, value):

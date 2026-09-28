@@ -18,6 +18,26 @@ from backend.environment.opportunity import calculate_spill_opportunity
 from backend.environment.uncertainty import calculate_data_uncertainty
 from backend.environment.pre_spill import evaluate_pre_spill_candidate, rank_surveillance_candidates
 
+# Commit 3, 4, 5, 6, 7, 8 modules
+from backend.forensics.dead_reckoning import assess_gap_detections
+from backend.ocean.forecast_update import update_forecast
+from backend.environment.response import build_response_queue
+from backend.ocean.observation_planner import rank_observation_windows
+from backend.vessels.integrity import inspect_ais_integrity
+from backend.vessels.temporal_risk import calculate_temporal_risk
+from backend.environment.dynamic_queue import build_dynamic_queue
+from backend.forensics.timeline import build_investigation_timeline
+from backend.forensics.merge_integrity_timeline import merge_integrity_flags
+from backend.forensics.dossier import make_dossier
+from backend.vessels.contextual_behavior import score_scenario as score_contextual_behavior
+from backend.environment.contextual_queue import add_contextual_events
+from backend.environment.escape_intercept import analyze as analyze_escape_intercept
+from backend.forensics.merge_surveillance_timeline import merge_surveillance_timeline
+
+WORKSPACE_ROOT = Path(r"c:\Users\sahil\Documents\antig\sih143\we_have_to_win_sih")
+SCENARIOS_DIR = WORKSPACE_ROOT / "scenarios"
+OUTPUTS_DIR = WORKSPACE_ROOT / "outputs"
+
 BASE_SETTINGS = {
     "earth_radius_m": 6371008.8,
     "meters_per_second_per_knot": 0.514444,
@@ -422,11 +442,21 @@ def compute_multi_ship_data():
             ],
         })
 
-    # Run overall counterfactual attribution against observed slick
+    # Run overall counterfactual attribution against observed slick (Commit 7 Vector & Physical Shape Consistency)
     attribution_scenario = {
         "observation": {
             "time": OBSERVED_SLICK["time"],
             "centroid": OBSERVED_SLICK["centroid"],
+            "footprint_geojson": {
+                "type": "Polygon",
+                "coordinates": [[
+                    [72.58, 18.86],
+                    [72.62, 18.86],
+                    [72.62, 18.90],
+                    [72.58, 18.90],
+                    [72.58, 18.86]
+                ]]
+            }
         },
         "analysis": {
             "min_hours_before": 3,
@@ -434,6 +464,14 @@ def compute_multi_ship_data():
             "run_count": 80,
             "match_radius_m": 6000,
             "minimum_consistency_fraction": 0.40,
+            "minimum_vector_score": 0.40,
+            "vector_weights": {
+                "centroid_fraction": 0.4,
+                "polygon_support_fraction": 0.3,
+                "area_similarity": 0.15,
+                "orientation_similarity": 0.15,
+                "orientation_minimum_anisotropy": 0.15,
+            },
             "random_seed": 143,
         },
         "drift_config": {
@@ -455,6 +493,11 @@ def compute_multi_ship_data():
     }
 
     attribution_results = evaluate_counterfactuals(attribution_scenario)
+    for cand in attribution_results.get("candidates", []):
+        rhs = cand.get("release_hypotheses", [])
+        if rhs and "physical_consistency_vector" in rhs[0]:
+            cand["physical_consistency_vector"] = rhs[0]["physical_consistency_vector"]
+
     attr_by_mmsi = {cand["mmsi"]: cand for cand in attribution_results["candidates"]}
 
     # Second pass: compute individual ship telemetry, drift forecast & backtrack
@@ -559,6 +602,50 @@ def compute_multi_ship_data():
             "uncertainty_breakdown": unc,
         }
 
+        # Operational response queue for this ship's impact forecast (Commit 4)
+        ship_response = build_response_queue(
+            impact_forecast,
+            {
+                "rules": [
+                    {
+                        "rule_id": "rule_high_exposure_sensitive",
+                        "priority_rank": 1,
+                        "conditions": [
+                            {"field": "consequence_weight", "operator": "gte", "value": 0.8},
+                            {"field": "exposure_fraction", "operator": "gte", "value": 0.35}
+                        ],
+                        "actions": [
+                            "Predeploy containment boom perimeter",
+                            "Deploy skimmer taskforce from Mumbai offshore base",
+                            "Alert marine sanctuary reserve management"
+                        ]
+                    },
+                    {
+                        "rule_id": "rule_imminent_intercept",
+                        "priority_rank": 2,
+                        "conditions": [
+                            {"field": "earliest_eta_hours", "operator": "lte", "value": 12.0},
+                            {"field": "exposure_fraction", "operator": "gte", "value": 0.15}
+                        ],
+                        "actions": [
+                            "Issue coastal intertidal patrol notification",
+                            "Request updated high-resolution SAR satellite observation"
+                        ]
+                    },
+                    {
+                        "rule_id": "rule_general_monitoring",
+                        "priority_rank": 3,
+                        "conditions": [
+                            {"field": "exposure_fraction", "operator": "gte", "value": 0.05}
+                        ],
+                        "actions": [
+                            "Maintain automated drift trajectory monitoring"
+                        ]
+                    }
+                ]
+            }
+        )
+
         ship_obj = {
             "mmsi": mmsi,
             "name": spec["name"],
@@ -596,6 +683,7 @@ def compute_multi_ship_data():
             ),
             "impact": impact_forecast,
             "surveillance": surveillance_item,
+            "response_queue": ship_response,
         }
         ships_output.append(ship_obj)
 
@@ -608,11 +696,130 @@ def compute_multi_ship_data():
 
     primary_ship = ships_output[0]
 
+    # === COMMIT 3: Dark Vessel Dead Reckoning vs. SAR ===
+    dead_reckoning = {}
+    dr_path = SCENARIOS_DIR / "dead_reckoning_demo.json"
+    if dr_path.exists():
+        dr_case = json.loads(dr_path.read_text(encoding="utf-8-sig"))
+        dead_reckoning = assess_gap_detections(dr_case)
+
+    # === COMMIT 3: Bayesian Forecast Update ===
+    forecast_update = {}
+    fu_path = SCENARIOS_DIR / "forecast_update_demo.json"
+    if fu_path.exists():
+        fu_case = json.loads(fu_path.read_text(encoding="utf-8-sig"))
+        forecast_update = update_forecast(fu_case)
+
+    # === COMMIT 4: Observation Window Planner ===
+    observation_plan = {}
+    op_path = SCENARIOS_DIR / "observation_plan_demo.json"
+    if op_path.exists():
+        op_case = json.loads(op_path.read_text(encoding="utf-8-sig"))
+        observation_plan = rank_observation_windows(op_case)
+
+    # === COMMIT 5: AIS Data Integrity Inspection ===
+    demo_integrity_path = SCENARIOS_DIR / "ais_integrity_demo.json"
+    demo_tracks = []
+    if demo_integrity_path.exists():
+        demo_tracks = json.loads(demo_integrity_path.read_text(encoding="utf-8-sig")).get("tracks", [])
+
+    integrity_case = {
+        "settings": {
+            "earth_radius_m": 6371008.8,
+            "meters_per_nautical_mile": 1852.0,
+            "seconds_per_hour": 3600.0,
+            "max_course_change_interval_seconds": 900,
+            "course_reversal_threshold_deg": 120.0,
+            "frozen_coordinate_tolerance_m": 50.0,
+            "frozen_minimum_points": 3,
+        },
+        "speed_limits_knots": {
+            "tanker": 18.0,
+            "cargo": 19.0,
+            "container": 23.0,
+        },
+        "tracks": [
+            {
+                "mmsi": s["mmsi"],
+                "vessel_type": s["type"],
+                "points": [
+                    {"time": p["time"], "lat": p["lat"], "lon": p["lon"], "cog_degrees": p.get("cog_deg")}
+                    for p in s["ais_points"]
+                ],
+            }
+            for s in SHIPS_SPEC
+        ] + demo_tracks,
+    }
+    fleet_integrity = inspect_ais_integrity(integrity_case)
+
+    # Attach specific integrity flags to each ship
+    for s in ships_output:
+        s["integrity_flags"] = [
+            e for e in fleet_integrity["events"] if e.get("mmsi") == s["mmsi"]
+        ]
+
+    # === COMMIT 5: Temporal Risk Decay ===
+    temporal_risk = {}
+    tr_path = SCENARIOS_DIR / "temporal_risk_demo.json"
+    if tr_path.exists():
+        tr_case = json.loads(tr_path.read_text(encoding="utf-8-sig"))
+        temporal_risk = calculate_temporal_risk(tr_case)
+
+    # === COMMIT 5: Unified Investigation Timeline ===
+    timeline_path = SCENARIOS_DIR / "investigation_timeline_demo.json"
+    investigation_timeline = {"events": []}
+    if timeline_path.exists():
+        tl_case = json.loads(timeline_path.read_text(encoding="utf-8-sig"))
+        raw_tl = build_investigation_timeline(tl_case)
+        investigation_timeline = merge_integrity_flags(raw_tl, fleet_integrity)
+
+    # === COMMIT 5: Investigation Dossier HTML ===
+    dossier_html = ""
+    dossier_file = OUTPUTS_DIR / "investigation_dossier.html"
+    if dossier_file.exists():
+        dossier_html = dossier_file.read_text(encoding="utf-8")
+
+    # === COMMIT 6: Contextual Behavior Engine ===
+    contextual_behavior = {}
+    cb_path = SCENARIOS_DIR / "contextual_behavior_demo.json"
+    if cb_path.exists():
+        cb_case = json.loads(cb_path.read_text(encoding="utf-8-sig"))
+        contextual_behavior = score_contextual_behavior(cb_case)
+
+    # === COMMIT 7: Jurisdictional Escape & Intercept Feasibility ===
+    escape_intercept = {}
+    ei_path = SCENARIOS_DIR / "escape_intercept_demo.json"
+    if ei_path.exists():
+        ei_case = json.loads(ei_path.read_text(encoding="utf-8-sig"))
+        escape_intercept = analyze_escape_intercept(ei_case)
+
+    # === COMMIT 8: Complete Investigation Timeline Fusion ===
+    try:
+        if investigation_timeline and temporal_risk:
+            investigation_timeline = merge_surveillance_timeline(
+                deepcopy(investigation_timeline),
+                temporal_risk,
+                {"queue": ranked_queue},
+                contextual_behavior if contextual_behavior else None,
+            )
+    except Exception as e:
+        print(f"Timeline merge warning: {e}")
+
     return {
         "active_case": OBSERVED_SLICK,
         "ships": ships_output,
         "selected_mmsi": primary_ship["mmsi"],
         "overall_attribution": attribution_results,
+        "dead_reckoning": dead_reckoning,
+        "observation_plan": observation_plan,
+        "forecast_update": forecast_update,
+        "ais_integrity": fleet_integrity,
+        "temporal_risk": temporal_risk,
+        "investigation_timeline": investigation_timeline,
+        "dossier_html": dossier_html,
+        "overall_response_queue": primary_ship.get("response_queue", {}),
+        "contextual_behavior": contextual_behavior,
+        "escape_intercept": escape_intercept,
         # Backward compatibility with existing frontend types
         "vessel_analysis": primary_ship["vessel_analysis"],
         "drift_analysis": {
@@ -622,3 +829,4 @@ def compute_multi_ship_data():
         "attribution": attribution_results,
         "surveillance_queue": ranked_queue,
     }
+
