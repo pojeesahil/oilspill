@@ -9,33 +9,33 @@ PROJECT_ROOT = ROOT.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from backend.environment.contextual_queue import add_contextual_events
-from backend.environment.dynamic_queue import build_dynamic_queue
-from backend.environment.escape_intercept import analyze as analyze_escape
-from backend.environment.impact import forecast_hypothetical_impact
-from backend.environment.opportunity import calculate_spill_opportunity
-from backend.environment.pre_spill import evaluate_pre_spill_candidate
-from backend.environment.response import build_response_queue
-from backend.environment.uncertainty import calculate_data_uncertainty
-from backend.forensics.ais_trust import verify_sar_ais
-from backend.forensics.counterfactual import evaluate_counterfactuals
-from backend.forensics.dead_reckoning import assess_gap_detections
-from backend.forensics.dossier import make_dossier
-from backend.forensics.evidence import build_hypothesis_report
-from backend.forensics.merge_counterfactual_timeline import (
+from oilspill.api.backend.environment.contextual_queue import add_contextual_events
+from oilspill.api.backend.environment.dynamic_queue import build_dynamic_queue
+from oilspill.api.backend.environment.escape_intercept import analyze as analyze_escape
+from oilspill.api.backend.environment.impact import forecast_hypothetical_impact
+from oilspill.api.backend.environment.opportunity import calculate_spill_opportunity
+from oilspill.api.backend.environment.pre_spill import evaluate_pre_spill_candidate
+from oilspill.api.backend.environment.response import build_response_queue
+from oilspill.api.backend.environment.uncertainty import calculate_data_uncertainty
+from oilspill.api.backend.forensics.ais_trust import verify_sar_ais
+from oilspill.api.backend.forensics.counterfactual import evaluate_counterfactuals
+from oilspill.api.backend.forensics.dead_reckoning import assess_gap_detections
+from oilspill.api.backend.forensics.dossier import make_dossier
+from oilspill.api.backend.forensics.evidence import build_hypothesis_report
+from oilspill.api.backend.forensics.merge_counterfactual_timeline import (
     merge_counterfactual_timeline,
 )
-from backend.forensics.merge_integrity_timeline import merge_integrity_flags
-from backend.forensics.merge_surveillance_timeline import (
+from oilspill.api.backend.forensics.merge_integrity_timeline import merge_integrity_flags
+from oilspill.api.backend.forensics.merge_surveillance_timeline import (
     merge_surveillance_timeline,
 )
-from backend.forensics.timeline import build_investigation_timeline
-from backend.ocean.drift import DriftConfig, DriftForcing, monte_carlo_hindcast
-from backend.ocean.forecast_update import update_forecast
-from backend.ocean.observation_planner import rank_observation_windows
-from backend.vessels.contextual_behavior import score_scenario
-from backend.vessels.integrity import inspect_ais_integrity
-from backend.vessels.temporal_risk import calculate_temporal_risk
+from oilspill.api.backend.forensics.timeline import build_investigation_timeline
+from oilspill.api.backend.ocean.drift import DriftConfig, DriftForcing, monte_carlo_hindcast
+from oilspill.api.backend.ocean.forecast_update import update_forecast
+from oilspill.api.backend.ocean.observation_planner import rank_observation_windows
+from oilspill.api.backend.vessels.contextual_behavior import score_scenario
+from oilspill.api.backend.vessels.integrity import inspect_ais_integrity
+from oilspill.api.backend.vessels.temporal_risk import calculate_temporal_risk
 
 SCENARIOS = PROJECT_ROOT / "scenarios"
 OUTPUTS = PROJECT_ROOT / "outputs" / "synthetic_integrated_demo"

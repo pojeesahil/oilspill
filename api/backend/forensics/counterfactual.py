@@ -4,8 +4,8 @@ import random
 import sys
 from pathlib import Path
 
-from backend.forensics.physical_consistency import score_ensemble
-from backend.ocean.drift import (
+from oilspill.api.backend.forensics.physical_consistency import score_ensemble
+from oilspill.api.backend.ocean.drift import (
     DriftConfig,
     DriftForcing,
     parse_time,

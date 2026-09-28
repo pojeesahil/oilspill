@@ -149,7 +149,7 @@ def get_scenario(name: str):
     with open(filepath, "r", encoding="utf-8-sig") as f:
         return json.load(f)
 
-from api.ships_service import compute_multi_ship_data
+from oilspill.api.ships_service import compute_multi_ship_data
 
 _CACHED_ANALYSIS = None
 

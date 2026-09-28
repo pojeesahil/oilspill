@@ -1,5 +1,5 @@
 from math import asin, cos, exp, radians, sin, sqrt
-from backend.ocean.drift import parse_time
+from oilspill.api.backend.ocean.drift import parse_time
 
 
 def _clamp(value):

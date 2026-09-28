@@ -2,7 +2,7 @@ import json
 import sys
 from pathlib import Path
 
-from backend.ocean.drift import parse_time
+from oilspill.api.backend.ocean.drift import parse_time
 
 
 def build_investigation_timeline(case):

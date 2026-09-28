@@ -2,10 +2,10 @@ import json
 import sys
 from pathlib import Path
 
-from backend.environment.impact import forecast_hypothetical_impact
-from backend.environment.opportunity import calculate_spill_opportunity
-from backend.environment.uncertainty import calculate_data_uncertainty
-from backend.environment.pre_spill import rank_surveillance_candidates
+from oilspill.api.backend.environment.impact import forecast_hypothetical_impact
+from oilspill.api.backend.environment.opportunity import calculate_spill_opportunity
+from oilspill.api.backend.environment.uncertainty import calculate_data_uncertainty
+from oilspill.api.backend.environment.pre_spill import rank_surveillance_candidates
 
 
 def evaluate_candidate(candidate):

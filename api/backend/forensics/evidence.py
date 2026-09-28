@@ -2,7 +2,7 @@ import json
 import sys
 from pathlib import Path
 
-from backend.forensics.counterfactual import evaluate_counterfactuals
+from oilspill.api.backend.forensics.counterfactual import evaluate_counterfactuals
 
 
 def _metric_evidence(vector, vector_threshold):
