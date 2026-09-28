@@ -1,0 +1,51 @@
+{
+  "scoring": {
+    "zscore_threshold": 2,
+    "saturation_zscore": 5,
+    "event_type": "contextual_behavior_signal"
+  },
+  "baselines": [
+    {
+      "match": {
+        "vessel_type": "tanker",
+        "operating_context": "open_water"
+      },
+      "metrics": {
+        "speed_knots": {"mean": 12, "std": 2},
+        "loitering_minutes": {"mean": 2, "std": 3}
+      }
+    },
+    {
+      "match": {
+        "vessel_type": "tanker",
+        "operating_context": "anchorage"
+      },
+      "metrics": {
+        "speed_knots": {"mean": 3, "std": 1},
+        "loitering_minutes": {"mean": 20, "std": 10}
+      }
+    }
+  ],
+  "observations": [
+    {
+      "mmsi": "SYNTHETIC-001",
+      "time": "2026-09-26T06:30:00Z",
+      "vessel_type": "tanker",
+      "operating_context": "open_water",
+      "metrics": {
+        "speed_knots": 3,
+        "loitering_minutes": 2
+      }
+    },
+    {
+      "mmsi": "SYNTHETIC-001",
+      "time": "2026-09-26T07:30:00Z",
+      "vessel_type": "tanker",
+      "operating_context": "anchorage",
+      "metrics": {
+        "speed_knots": 3,
+        "loitering_minutes": 20
+      }
+    }
+  ]
+}

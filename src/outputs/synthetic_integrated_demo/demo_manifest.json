@@ -1,0 +1,15 @@
+{
+  "scenario_label": "SYNTHETIC SIMULATION — not live data or operational output",
+  "sar_observation": "Supplied synthetic GeoJSON footprint and centroid; no detector or ML model used. Counterfactual attribution tests synthetic release hypotheses against centroid and footprint geometry.",
+  "ais_tracks": "Supplied synthetic vessel tracks.",
+  "environmental_forcing_and_ecosystems": "Scenario-configured synthetic forcing and zones.",
+  "score_caveat": "Indices/fractions are configured simulation outputs, not calibrated probabilities, guilt scores, live detections, or operational forecasts.",
+  "pipeline": [
+    "contextual baseline → temporal decay → consequence-aware surveillance priority",
+    "AIS kinematic/integrity screening → SAR-AIS trust cross-check → dead reckoning gap analysis → EEZ escape & patrol intercept vector",
+    "synthetic SAR centroid → Monte-Carlo backward hindcast origin envelope → counterfactual release simulation → centroid + vector evidence fusion → unknown-source review",
+    "new synthetic observation → forecast ensemble correction → next observation window ranking",
+    "pre-spill hypothetical impact → surveillance priority; post-spill SAR-centroid impact → configured response recommendations",
+    "single merged timeline + HTML investigation dossier (not PDF)"
+  ]
+}

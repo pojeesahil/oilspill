@@ -1,0 +1,25 @@
+{
+  "scenario_label": "SYNTHETIC DEMO - not operational data",
+  "vessel_id": "SYNTHETIC-001",
+  "jurisdiction_status": "projected_exit_found",
+  "projected_boundary_exit": {
+    "eta_hours": 1.1353898767847568,
+    "time": "2026-09-26T09:08:07.403556+00:00",
+    "position": {
+      "lat": 18.999789391884068,
+      "lon": 73.00000000000304
+    }
+  },
+  "interception_estimate": {
+    "base": "Synthetic patrol base",
+    "position": {
+      "lat": 18.99990810155034,
+      "lon": 72.90495858045968
+    },
+    "vessel_eta_hours": 0.75,
+    "patrol_eta_hours": 0.5841058950626814,
+    "time_margin_hours": 0.1658941049373186,
+    "time": "2026-09-26T08:45:00+00:00"
+  },
+  "interpretation": "Estimate assumes constant course and speed and uses the supplied boundary and patrol-base data. It is not a live operational tracking or dispatch recommendation."
+}

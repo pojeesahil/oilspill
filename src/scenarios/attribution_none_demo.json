@@ -1,0 +1,100 @@
+﻿{
+    "scenario_label":  "SYNTHETIC COUNTERFACTUAL SMOKE TEST",
+    "observation":  {
+                        "time":  "2026-09-26T12:00:00Z",
+                        "centroid":  {
+                                         "lat":  18.882,
+                                         "lon":  72.601
+                                     },
+                        "footprint_geojson":  {
+                                                  "type":  "Polygon",
+                                                  "coordinates":  [
+                                                                      [
+                                                                          [
+                                                                              72.58,
+                                                                              18.86
+                                                                          ],
+                                                                          [
+                                                                              72.62,
+                                                                              18.86
+                                                                          ],
+                                                                          [
+                                                                              72.62,
+                                                                              18.90
+                                                                          ],
+                                                                          [
+                                                                              72.58,
+                                                                              18.90
+                                                                          ],
+                                                                          [
+                                                                              72.58,
+                                                                              18.86
+                                                                          ]
+                                                                      ]
+                                                                  ]
+                                              }
+                    },
+    "analysis":  {
+                     "min_hours_before":  4,
+                     "max_hours_before":  8,
+                     "run_count":  100,
+                     "match_radius_m":  5000,
+                     "minimum_consistency_fraction":  0.5,
+                     "minimum_vector_score":  0.5,
+                     "vector_weights":  {
+                                            "centroid_fraction":  0.4,
+                                            "polygon_support_fraction":  0.3,
+                                            "area_similarity":  0.15,
+                                            "orientation_similarity":  0.15,
+                                            "orientation_minimum_anisotropy":  0.15
+                                        },
+                     "random_seed":  143
+                 },
+    "drift_config":  {
+                         "earth_radius_m":  6371008.8,
+                         "step_seconds":  600,
+                         "windage":  0.03,
+                         "diffusion_m2ps":  2.0,
+                         "longitude_cosine_floor":  0.001
+                     },
+    "forcing":  {
+                    "current_east_mps":  0.15,
+                    "current_north_mps":  0.05,
+                    "wind_east_mps":  2.0,
+                    "wind_north_mps":  1.0,
+                    "current_uncertainty_mps":  0.08,
+                    "wind_uncertainty_mps":  0.5
+                },
+    "candidates":  [
+                       {
+                           "mmsi":  "SYNTHETIC-001",
+                           "track":  [
+                                         {
+                                             "time":  "2026-09-26T06:00:00Z",
+                                             "lat":  19.35,
+                                             "lon":  73.05
+                                         },
+                                         {
+                                             "time":  "2026-09-26T06:30:00Z",
+                                             "lat":  19.37,
+                                             "lon":  73.07
+                                         },
+                                         {
+                                             "time":  "2026-09-26T07:00:00Z",
+                                             "lat":  19.37,
+                                             "lon":  73.07
+                                         },
+                                         {
+                                             "time":  "2026-09-26T07:50:00Z",
+                                             "lat":  19.371,
+                                             "lon":  73.071
+                                         },
+                                         {
+                                             "time":  "2026-09-26T08:05:00Z",
+                                             "lat":  19.5,
+                                             "lon":  73.13
+                                         }
+                                     ]
+                       }
+                   ]
+}

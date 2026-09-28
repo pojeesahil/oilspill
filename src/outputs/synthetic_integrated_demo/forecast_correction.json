@@ -1,0 +1,46 @@
+{
+  "posterior_hypothesis_weights": {
+    "H-A": 0.9999572497992697,
+    "H-B": 4.275020073029711e-05
+  },
+  "particle_updates": [
+    {
+      "particle_id": "A-1",
+      "hypothesis_id": "H-A",
+      "observation_residual_m": 10605.9,
+      "posterior_weight": 0.5156775266538736
+    },
+    {
+      "particle_id": "A-2",
+      "hypothesis_id": "H-A",
+      "observation_residual_m": 10753.0,
+      "posterior_weight": 0.48427972314539613
+    },
+    {
+      "particle_id": "B-1",
+      "hypothesis_id": "H-B",
+      "observation_residual_m": 24702.5,
+      "posterior_weight": 2.4500942504768464e-05
+    },
+    {
+      "particle_id": "B-2",
+      "hypothesis_id": "H-B",
+      "observation_residual_m": 24998.8,
+      "posterior_weight": 1.8249258225528645e-05
+    }
+  ],
+  "effective_sample_size": 1.998200968997353,
+  "corrected_forecast": [
+    {
+      "time": "2026-09-26T18:00:00+00:00",
+      "lat": 18.92097287278343,
+      "lon": 72.72048858568046
+    },
+    {
+      "time": "2026-09-27T00:00:00+00:00",
+      "lat": 18.950972872785883,
+      "lon": 72.75048858567098
+    }
+  ],
+  "score_meaning": "Synthetic simulation output. Forecast particles were reweighted against the supplied observation and measurement uncertainty. Results depend on the configured model and are not validated probabilities."
+}

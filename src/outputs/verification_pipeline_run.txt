@@ -1,0 +1,3 @@
+Synthetic integrated demo complete: C:\Users\Abhijit Naik\Downloads\we_have_to_win_sih_updated\we_have_to_win_sih\outputs\synthetic_integrated_demo
+Events: 31; candidates: 1; response zones: 1
+All outputs are synthetic simulation results; see demo_manifest.json for limits.

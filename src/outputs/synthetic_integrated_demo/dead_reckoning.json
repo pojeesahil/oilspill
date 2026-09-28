@@ -1,0 +1,25 @@
+{
+  "matches": [
+    {
+      "mmsi": "SYNTHETIC-GAP-001",
+      "detection_id": "SAR-GAP-MATCH",
+      "hours_since_last_ais": 0.5,
+      "predicted_position": {
+        "lat": 19.0,
+        "lon": 72.71807547084147
+      },
+      "detection_distance_m": 7.9,
+      "corridor_radius_m": 1360.0,
+      "status": "sar_detection_consistent_with_dead_reckoning",
+      "interpretation": "Detection falls within the configured projected corridor; this is a candidate association, not identity confirmation."
+    }
+  ],
+  "unmatched_sar_detections": [
+    {
+      "detection_id": "SAR-GAP-OTHER",
+      "status": "not_matched_to_known_ais_gap_corridor",
+      "interpretation": "No configured dead-reckoning corridor matched this detection; it may be an unreported vessel or detection clutter."
+    }
+  ],
+  "score_meaning": "Constant-course dead reckoning with a configured uncertainty corridor; not proof of a dark vessel or AIS tampering."
+}

@@ -1,0 +1,49 @@
+﻿{
+  "scenario_label": "SYNTHETIC AIS TRUST TEST",
+  "limits": {
+    "max_match_distance_m": 2000,
+    "max_time_delta_seconds": 900,
+    "earth_radius_m": 6371008.8
+  },
+  "sar_scene": {
+    "acquisition_time": "2026-09-26T08:05:00Z",
+    "footprint": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [72.5, 18.8],
+          [72.8, 18.8],
+          [72.8, 19.2],
+          [72.5, 19.2],
+          [72.5, 18.8]
+        ]
+      ]
+    }
+  },
+  "sar_detections": [
+    {
+      "detection_id": "SAR-SYN-001",
+      "lat": 19.0,
+      "lon": 72.63
+    },
+    {
+      "detection_id": "SAR-SYN-002",
+      "lat": 19.05,
+      "lon": 72.68
+    }
+  ],
+  "ais_positions": [
+    {
+      "mmsi": "SYNTHETIC-001",
+      "time": "2026-09-26T08:05:00Z",
+      "lat": 19.0,
+      "lon": 72.63
+    },
+    {
+      "mmsi": "SYNTHETIC-002",
+      "time": "2026-09-26T08:05:00Z",
+      "lat": 18.95,
+      "lon": 72.60
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+﻿{
+  "vessels": [
+    {
+      "mmsi": "SYNTHETIC-001",
+      "as_of_time": "2026-09-26T12:00:00+00:00",
+      "temporal_risk_index": 0.2727,
+      "events": [
+        {
+          "time": "2026-09-26T06:30:00+00:00",
+          "type": "speed_deviation",
+          "severity": 0.7,
+          "configured_weight": 0.35,
+          "age_hours": 5.5,
+          "decay_factor": 0.1487,
+          "current_contribution": 0.0364
+        },
+        {
+          "time": "2026-09-26T07:00:00+00:00",
+          "type": "loitering",
+          "severity": 0.8,
+          "configured_weight": 0.4,
+          "age_hours": 5.0,
+          "decay_factor": 0.1768,
+          "current_contribution": 0.0566
+        },
+        {
+          "time": "2026-09-26T07:50:00+00:00",
+          "type": "ais_gap",
+          "severity": 0.6,
+          "configured_weight": 0.5,
+          "age_hours": 4.17,
+          "decay_factor": 0.236,
+          "current_contribution": 0.0708
+        },
+        {
+          "time": "2026-09-26T08:05:00+00:00",
+          "type": "kinematic",
+          "severity": 0.9,
+          "configured_weight": 0.6,
+          "age_hours": 3.92,
+          "decay_factor": 0.2573,
+          "current_contribution": 0.139
+        }
+      ]
+    }
+  ],
+  "score_meaning": "Configurable surveillance index with time-decayed signals; not a spill probability, guilt score, or validated risk estimate."
+}

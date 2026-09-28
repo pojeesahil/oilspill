@@ -1,0 +1,36 @@
+﻿{
+  "response_queue": [
+    {
+      "zone": "Synthetic sensitive zone",
+      "exposure_fraction": 0.77,
+      "earliest_eta_hours": 8.0,
+      "consequence_weight": 1.0,
+      "priority_rank": 1,
+      "triggered_rules": [
+        "high_exposure_soon",
+        "exposure_monitoring"
+      ],
+      "recommended_actions": [
+        "Prioritize protection planning for this zone",
+        "Request an updated observation near the predicted trajectory",
+        "Continue monitoring the forecast for this zone"
+      ],
+      "status": "action_recommended"
+    },
+    {
+      "zone": "Synthetic outer area",
+      "exposure_fraction": 0.2,
+      "earliest_eta_hours": 20.0,
+      "consequence_weight": 0.4,
+      "priority_rank": 2,
+      "triggered_rules": [
+        "exposure_monitoring"
+      ],
+      "recommended_actions": [
+        "Continue monitoring the forecast for this zone"
+      ],
+      "status": "action_recommended"
+    }
+  ],
+  "interpretation": "Recommendations come from configured rules and scenario forecasts; they are decision support, not operational orders."
+}

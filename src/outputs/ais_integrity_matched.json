@@ -1,0 +1,30 @@
+﻿{
+    "events":  [
+                   {
+                       "mmsi":  "SYNTHETIC-001",
+                       "type":  "impossible_speed_jump",
+                       "from_time":  "2026-09-26T06:00:00Z",
+                       "to_time":  "2026-09-26T06:01:00Z",
+                       "implied_speed_knots":  247.97616997675638,
+                       "configured_vessel_limit_knots":  24,
+                       "interpretation":  "Position-derived speed exceeds the configured vessel limit; check AIS data and vessel classification."
+                   },
+                   {
+                       "mmsi":  "SYNTHETIC-001",
+                       "type":  "abrupt_course_change",
+                       "from_time":  "2026-09-26T06:00:00Z",
+                       "to_time":  "2026-09-26T06:01:00Z",
+                       "course_change_degrees":  180,
+                       "interpretation":  "Large course change over a short interval; requires review and may reflect a turn or bad data."
+                   },
+                   {
+                       "mmsi":  "SYNTHETIC-001",
+                       "type":  "repeated_frozen_coordinates",
+                       "start_time":  "2026-09-26T06:01:00Z",
+                       "end_time":  "2026-09-26T06:04:00Z",
+                       "repeated_points":  4,
+                       "interpretation":  "Several reports remained within the configured coordinate tolerance; check for a stationary vessel or repeated/stale AIS data."
+                   }
+               ],
+    "score_meaning":  "Configurable AIS data-integrity flags; not proof of spoofing, illegal activity, or intent."
+}

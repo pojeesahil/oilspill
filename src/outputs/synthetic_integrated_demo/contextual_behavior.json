@@ -1,0 +1,68 @@
+{
+  "vessels": [
+    {
+      "mmsi": "SYNTHETIC-001",
+      "events": [
+        {
+          "time": "2026-09-26T06:30:00Z",
+          "type": "contextual_behavior_signal",
+          "severity": 0.8333,
+          "reasons": [
+            "speed_knots"
+          ]
+        }
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "mmsi": "SYNTHETIC-001",
+      "time": "2026-09-26T06:30:00Z",
+      "operating_context": "open_water",
+      "contextual_behavior_index": 0.8333,
+      "reasons": [
+        "speed_knots"
+      ],
+      "metric_signals": {
+        "speed_knots": {
+          "observed": 3.0,
+          "baseline_mean": 12.0,
+          "baseline_std": 2.0,
+          "standardized_deviation": -4.5,
+          "severity": 0.8333
+        },
+        "loitering_minutes": {
+          "observed": 2.0,
+          "baseline_mean": 2.0,
+          "baseline_std": 3.0,
+          "standardized_deviation": 0.0,
+          "severity": 0.0
+        }
+      }
+    },
+    {
+      "mmsi": "SYNTHETIC-001",
+      "time": "2026-09-26T07:30:00Z",
+      "operating_context": "anchorage",
+      "contextual_behavior_index": 0.0,
+      "reasons": [],
+      "metric_signals": {
+        "speed_knots": {
+          "observed": 3.0,
+          "baseline_mean": 3.0,
+          "baseline_std": 1.0,
+          "standardized_deviation": 0.0,
+          "severity": 0.0
+        },
+        "loitering_minutes": {
+          "observed": 20.0,
+          "baseline_mean": 20.0,
+          "baseline_std": 10.0,
+          "standardized_deviation": 0.0,
+          "severity": 0.0
+        }
+      }
+    }
+  ],
+  "score_meaning": "Configured deviation from supplied vessel and context baselines. Baseline quality affects results; this is not a spill probability or evidence of intent."
+}

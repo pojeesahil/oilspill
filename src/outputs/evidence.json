@@ -1,0 +1,64 @@
+﻿{
+  "hypotheses": [
+    {
+      "hypothesis": "H1: discharge associated with SYNTHETIC-001",
+      "mmsi": "SYNTHETIC-001",
+      "status": "physically_feasible_under_configured_test",
+      "evidence": [
+        {
+          "type": "counterfactual_centroid_reachability",
+          "direction": "supports_physical_feasibility",
+          "observed_fraction": 0.9625,
+          "configured_threshold": 0.5,
+          "message": "385 of 400 simulations reached the configured centroid radius."
+        },
+        {
+          "type": "release_time_consistency",
+          "direction": "supports_physical_feasibility",
+          "release_time": "2026-09-26T06:00:00Z",
+          "observed_fraction": 0.89,
+          "configured_threshold": 0.5,
+          "message": "At this release time, 89.0% of simulations matched the configured centroid radius."
+        },
+        {
+          "type": "release_time_consistency",
+          "direction": "supports_physical_feasibility",
+          "release_time": "2026-09-26T06:30:00Z",
+          "observed_fraction": 0.97,
+          "configured_threshold": 0.5,
+          "message": "At this release time, 97.0% of simulations matched the configured centroid radius."
+        },
+        {
+          "type": "release_time_consistency",
+          "direction": "supports_physical_feasibility",
+          "release_time": "2026-09-26T07:00:00Z",
+          "observed_fraction": 0.99,
+          "configured_threshold": 0.5,
+          "message": "At this release time, 99.0% of simulations matched the configured centroid radius."
+        },
+        {
+          "type": "release_time_consistency",
+          "direction": "supports_physical_feasibility",
+          "release_time": "2026-09-26T07:50:00Z",
+          "observed_fraction": 1.0,
+          "configured_threshold": 0.5,
+          "message": "At this release time, 100.0% of simulations matched the configured centroid radius."
+        }
+      ],
+      "surveillance_context": {
+        "use": "Pre-spill monitoring context only; not counted as causal evidence in this report."
+      }
+    },
+    {
+      "hypothesis": "Unknown or untracked source",
+      "status": "retained_as_alternative",
+      "evidence": [
+        {
+          "direction": "unresolved",
+          "message": "Known candidates met the configured test, but this does not rule out an untracked or non-AIS source."
+        }
+      ]
+    }
+  ],
+  "interpretation": "Evidence describes physical consistency under the configured scenario. It is not guilt, legal attribution, or a calibrated probability of source identity."
+}

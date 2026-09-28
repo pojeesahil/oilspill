@@ -1,0 +1,52 @@
+﻿{
+  "settings": {
+    "earth_radius_m": 6371008.8,
+    "meters_per_nautical_mile": 1852,
+    "seconds_per_hour": 3600,
+    "max_course_change_interval_seconds": 300,
+    "course_reversal_threshold_deg": 150,
+    "frozen_coordinate_tolerance_m": 5,
+    "frozen_minimum_points": 3
+  },
+  "speed_limits_knots": {
+    "tanker": 24
+  },
+  "tracks": [
+    {
+      "mmsi": "SYNTHETIC-TAMPER-001",
+      "vessel_type": "tanker",
+      "points": [
+        {
+          "time": "2026-09-26T06:00:00Z",
+          "lat": 18.85,
+          "lon": 72.55,
+          "cog_degrees": 90
+        },
+        {
+          "time": "2026-09-26T06:01:00Z",
+          "lat": 18.90,
+          "lon": 72.60,
+          "cog_degrees": 270
+        },
+        {
+          "time": "2026-09-26T06:02:00Z",
+          "lat": 18.90,
+          "lon": 72.60,
+          "cog_degrees": 270
+        },
+        {
+          "time": "2026-09-26T06:03:00Z",
+          "lat": 18.90,
+          "lon": 72.60,
+          "cog_degrees": 270
+        },
+        {
+          "time": "2026-09-26T06:04:00Z",
+          "lat": 18.90,
+          "lon": 72.60,
+          "cog_degrees": 270
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Investigation dossier — SYNTHETIC-001</title>
+<style>
+body { margin: 0; background: #f3f6f8; color: #172b3a;
+       font: 15px/1.5 Segoe UI, Arial, sans-serif; }
+main { max-width: 1100px; margin: 32px auto; padding: 0 22px; }
+header { background: #123047; color: white; padding: 28px;
+          border-radius: 12px; }
+h1 { margin: 0 0 6px; font-size: 28px; }
+h2 { margin-top: 30px; color: #123047; }
+h3 { margin: 0 0 8px; }
+.panel { background: white; border: 1px solid #d8e1e7;
+          border-radius: 10px; padding: 16px 20px; margin: 12px 0; }
+.status { color: #176b61; font-weight: 600; }
+.notice { border-left: 4px solid #d49a32; padding: 10px 14px;
+           background: #fff8e8; }
+table { width: 100%; border-collapse: collapse; background: white; }
+th, td { text-align: left; padding: 10px; border: 1px solid #d8e1e7;
+          vertical-align: top; }
+th { background: #e8eef2; }
+.small { color: #526775; font-size: 13px; }
+@media print {
+  body { background: white; }
+  main { max-width: none; margin: 0; padding: 0; }
+  header { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .panel, table { break-inside: avoid; }
+}
+</style>
+</head>
+<body><main>
+<header>
+  <h1>Oil Spill Investigation Dossier</h1>
+  <div>Vessel: SYNTHETIC-001</div>
+  <div class="small">Prototype analysis assembled from supplied scenario outputs</div>
+</header>
+<p class="notice"><strong>Interpretation:</strong>
+This dossier contains synthetic prototype results. Scores are not calibrated
+probabilities, proof of identity, or legal attribution. AIS integrity alerts
+require review and are not proof of spoofing or intent.</p>
+<h2>Candidate evidence</h2>
+<article class='panel'><h3>H1: discharge associated with SYNTHETIC-001</h3><p class='status'>meets_both_configured_physical_consistency_tests</p><ul><li>385 of 400 synthetic simulations reached the configured centroid radius (fraction 0.963; threshold 0.500).</li><li>Composite geometry score 0.749 meets the configured vector threshold 0.500. This is a prototype consistency index, not a probability or attribution finding.</li><li>Centroid match fraction: 0.963.</li><li>Footprint polygon support fraction: 0.613.</li><li>Endpoint-envelope versus footprint area similarity: 0.453.</li><li>Orientation similarity: unavailable; Metric is indeterminate for this geometry.</li><li>Candidate-level component values are unweighted means across release-time vectors, ignoring indeterminate values. The composite candidate score is endpoint-weighted. Orientation contributes only where it was determinate and used.</li><li>At hypothetical release time 2026-09-26T06:00:00Z, 89.0% of synthetic endpoints matched the configured centroid radius. This is not an observed discharge.</li><li>At hypothetical release time 2026-09-26T06:30:00Z, 97.0% of synthetic endpoints matched the configured centroid radius. This is not an observed discharge.</li><li>At hypothetical release time 2026-09-26T07:00:00Z, 99.0% of synthetic endpoints matched the configured centroid radius. This is not an observed discharge.</li><li>At hypothetical release time 2026-09-26T07:50:00Z, 100.0% of synthetic endpoints matched the configured centroid radius. This is not an observed discharge.</li></ul></article><article class='panel'><h3>Unknown or untracked source</h3><p class='status'>retained_as_alternative</p><ul><li>At least one known candidate met both configured tests, but that does not rule out an untracked or non-AIS source.</li></ul></article>
+<h2>Surveillance priority</h2>
+<table><thead><tr><th>Rank</th><th>Vessel</th><th>Temporal index</th>
+<th>Spill opportunity</th><th>Potential impact</th><th>Priority index</th>
+</tr></thead><tbody><tr><td>1</td><td>SYNTHETIC-001</td><td>0.3132</td><td>0.85</td><td>0.77</td><td>0.0738</td></tr></tbody></table>
+<h2>Recommended response</h2>
+<article class='panel'><h3>Synthetic sensitive zone · Priority 1</h3><p>Exposure: 0.9 | Earliest ETA: 5.0 h</p><ul><li>Prioritize protection planning for this zone</li><li>Request an updated observation near the predicted trajectory</li><li>Continue monitoring the forecast for this zone</li></ul></article>
+<h2>Investigation timeline</h2>
+<table><thead><tr><th>Time</th><th>Event</th><th>Details</th><th>Evidence role</th>
+</tr></thead><tbody><tr><td>2026-09-26T06:00:00Z</td><td>AIS report</td><td></td><td>Pre-spill surveillance context; not causal attribution evidence.</td></tr><tr><td>2026-09-26T06:00:00Z</td><td>Release-time hypothesis tested for SYNTHETIC-001</td><td>This is a simulated release time, not an observed discharge.</td><td>Counterfactual physical-consistency test.</td></tr><tr><td>2026-09-26T06:30:00+00:00</td><td>Time-decayed surveillance signal: speed_deviation</td><td></td><td>Pre-spill surveillance context; not causal attribution evidence.</td></tr><tr><td>2026-09-26T06:30:00+00:00</td><td>Time-decayed surveillance signal: contextual_behavior_signal</td><td></td><td>Pre-spill surveillance context; not causal attribution evidence.</td></tr><tr><td>2026-09-26T06:30:00Z</td><td>AIS behavior signal</td><td>speed_deviation</td><td>Pre-spill surveillance context; not causal attribution evidence.</td></tr><tr><td>2026-09-26T06:30:00Z</td><td>Release-time hypothesis tested for SYNTHETIC-001</td><td>This is a simulated release time, not an observed discharge.</td><td>Counterfactual physical-consistency test.</td></tr><tr><td>2026-09-26T06:30:00Z</td><td>Behavior evaluated against vessel and location baseline</td><td></td><td>Pre-spill surveillance context; not causal attribution evidence.</td></tr><tr><td>2026-09-26T07:00:00+00:00</td><td>Time-decayed surveillance signal: loitering</td><td></td><td>Pre-spill surveillance context; not causal attribution evidence.</td></tr><tr><td>2026-09-26T07:00:00Z</td><td>AIS behavior signal</td><td>speed_deviation, loitering</td><td>Pre-spill surveillance context; not causal attribution evidence.</td></tr><tr><td>2026-09-26T07:00:00Z</td><td>Release-time hypothesis tested for SYNTHETIC-001</td><td>This is a simulated release time, not an observed discharge.</td><td>Counterfactual physical-consistency test.</td></tr><tr><td>2026-09-26T07:30:00Z</td><td>Behavior evaluated against vessel and location baseline</td><td></td><td>Pre-spill surveillance context; not causal attribution evidence.</td></tr><tr><td>2026-09-26T07:50:00+00:00</td><td>Time-decayed surveillance signal: ais_gap</td><td></td><td>Pre-spill surveillance context; not causal attribution evidence.</td></tr><tr><td>2026-09-26T07:50:00Z</td><td>AIS behavior signal</td><td>speed_deviation, loitering, ais_gap</td><td>Pre-spill surveillance context; not causal attribution evidence.</td></tr><tr><td>2026-09-26T07:50:00Z</td><td>Release-time hypothesis tested for SYNTHETIC-001</td><td>This is a simulated release time, not an observed discharge.</td><td>Counterfactual physical-consistency test.</td></tr><tr><td>2026-09-26T08:05:00+00:00</td><td>Time-decayed surveillance signal: kinematic</td><td></td><td>Pre-spill surveillance context; not causal attribution evidence.</td></tr><tr><td>2026-09-26T08:05:00Z</td><td>AIS behavior signal</td><td>speed_deviation, kinematic</td><td>Pre-spill surveillance context; not causal attribution evidence.</td></tr><tr><td>2026-09-26T08:05:00Z</td><td>SAR-AIS sensor cross-check match: SYNTHETIC-001</td><td>Detection SAR-SYN-001; distance: 0.0 m; time delta: 0.0 s.</td><td>Spatial-temporal sensor cross-check; not an identity authentication.</td></tr><tr><td>2026-09-26T08:05:00Z</td><td>Unmatched SAR detection: SAR-SYN-002</td><td>Lat: 19.05, Lon: 72.68. Possible unreported vessel or detection clutter.</td><td>Sensor anomaly review; not proof of a dark vessel.</td></tr><tr><td>2026-09-26T08:45:00+00:00</td><td>Patrol intercept vector from Synthetic patrol base</td><td>Target time: 0.75 h; Patrol ETA: 0.58 h (margin: 0.17 h).</td><td>Calculated intercept vector recommendation; not a live dispatch.</td></tr><tr><td>2026-09-26T09:08:07.403556+00:00</td><td>Projected EEZ boundary exit: SYNTHETIC-001</td><td>ETA: 1.14 h at lat 18.9998, lon 73.0000.</td><td>Constant-course boundary projection estimate; not an operational tracking forecast.</td></tr><tr><td>2026-09-26T12:00:00+00:00</td><td>Pre-spill surveillance priority updated</td><td>Priority combines configured surveillance, spill-opportunity, impact, and uncertainty indices. It is monitoring context only.</td><td>Pre-spill surveillance context; not causal attribution evidence.</td></tr><tr><td>2026-09-26T12:00:00Z</td><td>Spill observed by SAR</td><td>Synthetic SAR spill observation</td><td>Observed incident evidence.</td></tr><tr><td>2026-09-26T12:00:00Z</td><td>Recommendation for Synthetic sensitive zone</td><td>Prioritize protection planning for this zone</td><td>Configured decision-support rule; not a recorded action.</td></tr><tr><td>2026-09-26T12:00:00Z</td><td>Recommendation for Synthetic sensitive zone</td><td>Request an updated observation near the predicted trajectory</td><td>Configured decision-support rule; not a recorded action.</td></tr><tr><td>2026-09-26T12:00:00Z</td><td>Recommendation for Synthetic sensitive zone</td><td>Continue monitoring the forecast for this zone</td><td>Configured decision-support rule; not a recorded action.</td></tr><tr><td>2026-09-26T12:00:00Z</td><td>Counterfactual assessment for SYNTHETIC-001</td><td>The candidate met the configured physical-consistency test; this does not establish source identity.</td><td>Post-incident physical-consistency evidence; surveillance signals are not counted as causal evidence.</td></tr><tr><td>2026-09-26T12:00:00Z</td><td>Monte-Carlo backward hindcast origin envelope generated</td><td>100 synthetic runs; lat bounds: [18.8394, 18.8942], lon bounds: [72.5242, 72.5916].</td><td>Synthetic Monte-Carlo backward drift hindcast envelope; simulation proxy, not a validated probability distribution.</td></tr><tr><td>2026-09-26T12:00:00Z</td><td>Dead reckoning corridor match: SYNTHETIC-GAP-001</td><td>Predicted distance to detection SAR-GAP-MATCH: 7.9 m (corridor radius: 1360.0 m).</td><td>Position projection during AIS gap; candidate association only.</td></tr><tr><td>2026-09-26T12:00:00Z</td><td>Response rule outcome: Synthetic sensitive zone</td><td>Prioritize protection planning for this zone; Request an updated observation near the predicted trajectory; Continue monitoring the forecast for this zone</td><td>Configured post-spill response rule outcome; not a recorded operational action.</td></tr><tr><td>2026-09-26T12:00:00Z</td><td>Forecast ensemble corrected by synthetic observation</td><td>Posterior weights and corrected forecast use scenario-supplied observation uncertainty.</td><td>Synthetic forecast update; not an operational forecast.</td></tr><tr><td>2026-09-27T12:00:00Z</td><td>Recommended next observation window</td><td>Top heuristic separation score: 0.599</td><td>Synthetic forecast-based observation planning; recommendation only.</td></tr></tbody></table>
+</main></body></html>

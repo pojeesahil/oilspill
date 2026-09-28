@@ -1,0 +1,314 @@
+﻿{
+  "source_assessment": "one_or_more_candidates_met_configured_centroid_threshold",
+  "threshold_used": 0.5,
+  "vector_assessment": "one_or_more_candidates_met_configured_vector_threshold",
+  "vector_threshold_used": 0.5,
+  "candidates": [
+    {
+      "mmsi": "SYNTHETIC-001",
+      "physical_consistency_fraction": 0.9625,
+      "physical_consistency_score": 0.749,
+      "compatible_simulations": 385,
+      "total_simulations": 400,
+      "release_hypotheses": [
+        {
+          "release_time": "2026-09-26T06:00:00Z",
+          "ensemble_consistency": 0.89,
+          "simulations": 100,
+          "physical_consistency_vector": {
+            "endpoint_count": 100,
+            "endpoint_envelope_area_m2": 62940792.29,
+            "observed_footprint_area_m2": 18718374.78,
+            "endpoint_envelope_orientation_deg": 151.6,
+            "observed_footprint_orientation_deg": null,
+            "orientation_status": "observed_footprint_orientation_indeterminate",
+            "centroid_fraction": 0.89,
+            "polygon_support_fraction": 0.38,
+            "area_similarity": 0.2974,
+            "orientation_similarity": null,
+            "score_components_used": [
+              "centroid_fraction",
+              "polygon_support_fraction",
+              "area_similarity"
+            ],
+            "score_components_excluded": {
+              "orientation_similarity": "Metric is indeterminate for this geometry."
+            },
+            "physical_consistency_score": 0.6054,
+            "interpretation": "Composite score uses centroid consistency, polygon support, area similarity. Orientation was indeterminate and excluded from the composite score. This endpoint-envelope geometry proxy is not a resolved slick-shape model."
+          }
+        },
+        {
+          "release_time": "2026-09-26T06:30:00Z",
+          "ensemble_consistency": 0.97,
+          "simulations": 100,
+          "physical_consistency_vector": {
+            "endpoint_count": 100,
+            "endpoint_envelope_area_m2": 54028081.33,
+            "observed_footprint_area_m2": 18718374.78,
+            "endpoint_envelope_orientation_deg": 169.56,
+            "observed_footprint_orientation_deg": null,
+            "orientation_status": "observed_footprint_orientation_indeterminate",
+            "centroid_fraction": 0.97,
+            "polygon_support_fraction": 0.55,
+            "area_similarity": 0.3465,
+            "orientation_similarity": null,
+            "score_components_used": [
+              "centroid_fraction",
+              "polygon_support_fraction",
+              "area_similarity"
+            ],
+            "score_components_excluded": {
+              "orientation_similarity": "Metric is indeterminate for this geometry."
+            },
+            "physical_consistency_score": 0.7117,
+            "interpretation": "Composite score uses centroid consistency, polygon support, area similarity. Orientation was indeterminate and excluded from the composite score. This endpoint-envelope geometry proxy is not a resolved slick-shape model."
+          }
+        },
+        {
+          "release_time": "2026-09-26T07:00:00Z",
+          "ensemble_consistency": 0.99,
+          "simulations": 100,
+          "physical_consistency_vector": {
+            "endpoint_count": 100,
+            "endpoint_envelope_area_m2": 39876167.39,
+            "observed_footprint_area_m2": 18718374.78,
+            "endpoint_envelope_orientation_deg": 30.61,
+            "observed_footprint_orientation_deg": null,
+            "orientation_status": "observed_footprint_orientation_indeterminate",
+            "centroid_fraction": 0.99,
+            "polygon_support_fraction": 0.71,
+            "area_similarity": 0.4694,
+            "orientation_similarity": null,
+            "score_components_used": [
+              "centroid_fraction",
+              "polygon_support_fraction",
+              "area_similarity"
+            ],
+            "score_components_excluded": {
+              "orientation_similarity": "Metric is indeterminate for this geometry."
+            },
+            "physical_consistency_score": 0.7993,
+            "interpretation": "Composite score uses centroid consistency, polygon support, area similarity. Orientation was indeterminate and excluded from the composite score. This endpoint-envelope geometry proxy is not a resolved slick-shape model."
+          }
+        },
+        {
+          "release_time": "2026-09-26T07:50:00Z",
+          "ensemble_consistency": 1.0,
+          "simulations": 100,
+          "physical_consistency_vector": {
+            "endpoint_count": 100,
+            "endpoint_envelope_area_m2": 26874082.83,
+            "observed_footprint_area_m2": 18718374.78,
+            "endpoint_envelope_orientation_deg": 99.89,
+            "observed_footprint_orientation_deg": null,
+            "orientation_status": "observed_footprint_orientation_indeterminate",
+            "centroid_fraction": 1.0,
+            "polygon_support_fraction": 0.81,
+            "area_similarity": 0.6965,
+            "orientation_similarity": null,
+            "score_components_used": [
+              "centroid_fraction",
+              "polygon_support_fraction",
+              "area_similarity"
+            ],
+            "score_components_excluded": {
+              "orientation_similarity": "Metric is indeterminate for this geometry."
+            },
+            "physical_consistency_score": 0.8794,
+            "interpretation": "Composite score uses centroid consistency, polygon support, area similarity. Orientation was indeterminate and excluded from the composite score. This endpoint-envelope geometry proxy is not a resolved slick-shape model."
+          }
+        }
+      ],
+      "sample_trajectory": [
+        {
+          "time": "2026-09-26T06:00:00+00:00",
+          "lat": 18.85,
+          "lon": 72.55
+        },
+        {
+          "time": "2026-09-26T06:10:00+00:00",
+          "lat": 18.84950293925414,
+          "lon": 72.5527532767028
+        },
+        {
+          "time": "2026-09-26T06:20:00+00:00",
+          "lat": 18.849572849193052,
+          "lon": 72.55506989020654
+        },
+        {
+          "time": "2026-09-26T06:30:00+00:00",
+          "lat": 18.8502688609656,
+          "lon": 72.55709296911465
+        },
+        {
+          "time": "2026-09-26T06:40:00+00:00",
+          "lat": 18.850267444870855,
+          "lon": 72.55848377683567
+        },
+        {
+          "time": "2026-09-26T06:50:00+00:00",
+          "lat": 18.849663944962426,
+          "lon": 72.56052724635565
+        },
+        {
+          "time": "2026-09-26T07:00:00+00:00",
+          "lat": 18.849474449869895,
+          "lon": 72.56264011445694
+        },
+        {
+          "time": "2026-09-26T07:10:00+00:00",
+          "lat": 18.848759602768098,
+          "lon": 72.5637191195865
+        },
+        {
+          "time": "2026-09-26T07:20:00+00:00",
+          "lat": 18.848575690107097,
+          "lon": 72.56556763607355
+        },
+        {
+          "time": "2026-09-26T07:30:00+00:00",
+          "lat": 18.847683164278113,
+          "lon": 72.56837552489688
+        },
+        {
+          "time": "2026-09-26T07:40:00+00:00",
+          "lat": 18.84813880498311,
+          "lon": 72.5702415463896
+        },
+        {
+          "time": "2026-09-26T07:50:00+00:00",
+          "lat": 18.84820543831706,
+          "lon": 72.57205364336666
+        },
+        {
+          "time": "2026-09-26T08:00:00+00:00",
+          "lat": 18.847940590104674,
+          "lon": 72.57373348760429
+        },
+        {
+          "time": "2026-09-26T08:10:00+00:00",
+          "lat": 18.848511167239845,
+          "lon": 72.57595311459517
+        },
+        {
+          "time": "2026-09-26T08:20:00+00:00",
+          "lat": 18.84800562902665,
+          "lon": 72.57831256465435
+        },
+        {
+          "time": "2026-09-26T08:30:00+00:00",
+          "lat": 18.84732097406965,
+          "lon": 72.580417712288
+        },
+        {
+          "time": "2026-09-26T08:40:00+00:00",
+          "lat": 18.847229969589716,
+          "lon": 72.58127856730937
+        },
+        {
+          "time": "2026-09-26T08:50:00+00:00",
+          "lat": 18.846643707620792,
+          "lon": 72.5833772400151
+        },
+        {
+          "time": "2026-09-26T09:00:00+00:00",
+          "lat": 18.846897317770466,
+          "lon": 72.58515162161176
+        },
+        {
+          "time": "2026-09-26T09:10:00+00:00",
+          "lat": 18.84658589420901,
+          "lon": 72.58782211768994
+        },
+        {
+          "time": "2026-09-26T09:20:00+00:00",
+          "lat": 18.846761043939654,
+          "lon": 72.58968090493151
+        },
+        {
+          "time": "2026-09-26T09:30:00+00:00",
+          "lat": 18.846737132929324,
+          "lon": 72.59149509210043
+        },
+        {
+          "time": "2026-09-26T09:40:00+00:00",
+          "lat": 18.847008993251325,
+          "lon": 72.59388703515499
+        },
+        {
+          "time": "2026-09-26T09:50:00+00:00",
+          "lat": 18.847097485722696,
+          "lon": 72.59675445022717
+        },
+        {
+          "time": "2026-09-26T10:00:00+00:00",
+          "lat": 18.84796616734741,
+          "lon": 72.59936258008975
+        },
+        {
+          "time": "2026-09-26T10:10:00+00:00",
+          "lat": 18.84790825227879,
+          "lon": 72.60127647952305
+        },
+        {
+          "time": "2026-09-26T10:20:00+00:00",
+          "lat": 18.84778084672919,
+          "lon": 72.60321131604223
+        },
+        {
+          "time": "2026-09-26T10:30:00+00:00",
+          "lat": 18.847840096654586,
+          "lon": 72.60574419823958
+        },
+        {
+          "time": "2026-09-26T10:40:00+00:00",
+          "lat": 18.847764715647735,
+          "lon": 72.6071570386116
+        },
+        {
+          "time": "2026-09-26T10:50:00+00:00",
+          "lat": 18.84744606096419,
+          "lon": 72.60922010517532
+        },
+        {
+          "time": "2026-09-26T11:00:00+00:00",
+          "lat": 18.84769932120749,
+          "lon": 72.61043916783676
+        },
+        {
+          "time": "2026-09-26T11:10:00+00:00",
+          "lat": 18.84741451968606,
+          "lon": 72.61294529775601
+        },
+        {
+          "time": "2026-09-26T11:20:00+00:00",
+          "lat": 18.847460348324827,
+          "lon": 72.61372006948768
+        },
+        {
+          "time": "2026-09-26T11:30:00+00:00",
+          "lat": 18.847446927440934,
+          "lon": 72.61646962452754
+        },
+        {
+          "time": "2026-09-26T11:40:00+00:00",
+          "lat": 18.847135917357235,
+          "lon": 72.61858900150123
+        },
+        {
+          "time": "2026-09-26T11:50:00+00:00",
+          "lat": 18.847172674066606,
+          "lon": 72.62099930170375
+        },
+        {
+          "time": "2026-09-26T12:00:00+00:00",
+          "lat": 18.847956657051824,
+          "lon": 72.62168658660354
+        }
+      ],
+      "score_meaning": "physical_consistency_fraction is the fraction of simulated endpoints within the configured centroid radius. physical_consistency_score combines configured centroid, polygon-support, area, and orientation metrics."
+    }
+  ],
+  "score_meaning": "Centroid consistency is a configured simulation fraction, not a probability of guilt. The vector score compares simulated endpoint envelopes with the supplied footprint and is a prototype geometry proxy, not legal attribution."
+}

@@ -1,0 +1,109 @@
+{
+  "scenario_label": "SYNTHETIC COUNTERFACTUAL ASSESSMENT",
+  "hypotheses": [
+    {
+      "hypothesis": "H1: discharge associated with SYNTHETIC-001",
+      "mmsi": "SYNTHETIC-001",
+      "status": "meets_both_configured_physical_consistency_tests",
+      "evidence": [
+        {
+          "type": "counterfactual_centroid_reachability",
+          "direction": "supports_configured_centroid_test",
+          "observed_fraction": 0.9625,
+          "configured_threshold": 0.5,
+          "message": "385 of 400 synthetic simulations reached the configured centroid radius (fraction 0.963; threshold 0.500)."
+        },
+        {
+          "type": "physical_consistency_vector",
+          "direction": "supports_configured_vector_test",
+          "observed_score": 0.749,
+          "configured_threshold": 0.5,
+          "message": "Composite geometry score 0.749 meets the configured vector threshold 0.500. This is a prototype consistency index, not a probability or attribution finding."
+        },
+        {
+          "type": "vector_metric:centroid_fraction",
+          "direction": "descriptive_component",
+          "observed_value": 0.9625,
+          "included_in_composite": true,
+          "message": "Centroid match fraction: 0.963."
+        },
+        {
+          "type": "vector_metric:polygon_support_fraction",
+          "direction": "descriptive_component",
+          "observed_value": 0.6125,
+          "included_in_composite": true,
+          "message": "Footprint polygon support fraction: 0.613."
+        },
+        {
+          "type": "vector_metric:area_similarity",
+          "direction": "descriptive_component",
+          "observed_value": 0.4525,
+          "included_in_composite": true,
+          "message": "Endpoint-envelope versus footprint area similarity: 0.453."
+        },
+        {
+          "type": "vector_metric:orientation_similarity",
+          "direction": "indeterminate_or_excluded",
+          "observed_value": null,
+          "message": "Orientation similarity: unavailable; Metric is indeterminate for this geometry."
+        },
+        {
+          "type": "vector_metric_accounting",
+          "direction": "explanation",
+          "message": "Candidate-level component values are unweighted means across release-time vectors, ignoring indeterminate values. The composite candidate score is endpoint-weighted. Orientation contributes only where it was determinate and used."
+        },
+        {
+          "type": "release_time_consistency",
+          "direction": "supports_configured_centroid_test",
+          "release_time": "2026-09-26T06:00:00Z",
+          "observed_fraction": 0.89,
+          "configured_threshold": 0.5,
+          "message": "At hypothetical release time 2026-09-26T06:00:00Z, 89.0% of synthetic endpoints matched the configured centroid radius. This is not an observed discharge."
+        },
+        {
+          "type": "release_time_consistency",
+          "direction": "supports_configured_centroid_test",
+          "release_time": "2026-09-26T06:30:00Z",
+          "observed_fraction": 0.97,
+          "configured_threshold": 0.5,
+          "message": "At hypothetical release time 2026-09-26T06:30:00Z, 97.0% of synthetic endpoints matched the configured centroid radius. This is not an observed discharge."
+        },
+        {
+          "type": "release_time_consistency",
+          "direction": "supports_configured_centroid_test",
+          "release_time": "2026-09-26T07:00:00Z",
+          "observed_fraction": 0.99,
+          "configured_threshold": 0.5,
+          "message": "At hypothetical release time 2026-09-26T07:00:00Z, 99.0% of synthetic endpoints matched the configured centroid radius. This is not an observed discharge."
+        },
+        {
+          "type": "release_time_consistency",
+          "direction": "supports_configured_centroid_test",
+          "release_time": "2026-09-26T07:50:00Z",
+          "observed_fraction": 1.0,
+          "configured_threshold": 0.5,
+          "message": "At hypothetical release time 2026-09-26T07:50:00Z, 100.0% of synthetic endpoints matched the configured centroid radius. This is not an observed discharge."
+        }
+      ],
+      "surveillance_context": {
+        "use": "Pre-spill monitoring context only; not counted as post-spill causal evidence."
+      }
+    },
+    {
+      "hypothesis": "Unknown or untracked source",
+      "status": "retained_as_alternative",
+      "evidence": [
+        {
+          "type": "none_of_known_candidates_assessment",
+          "direction": "unresolved_alternative",
+          "centroid_assessment": "one_or_more_candidates_met_configured_centroid_threshold",
+          "centroid_threshold": 0.5,
+          "vector_assessment": "one_or_more_candidates_met_configured_vector_threshold",
+          "vector_threshold": 0.5,
+          "message": "At least one known candidate met both configured tests, but that does not rule out an untracked or non-AIS source."
+        }
+      ]
+    }
+  ],
+  "interpretation": "Evidence describes synthetic physical-consistency tests under configured scenario settings. The scores are not calibrated probabilities, guilt scores, proof of identity, or legal attribution. Pre-spill surveillance context is kept separate from post-spill causal evidence."
+}

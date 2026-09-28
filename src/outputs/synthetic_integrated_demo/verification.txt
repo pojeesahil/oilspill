@@ -1,0 +1,9 @@
+Synthetic integrated demo verification
+PASS
+PASS — positive synthetic candidate meets both configured tests
+PASS — negative control keeps unknown source for review
+PASS — candidate evidence explains centroid and vector thresholds
+PASS — orientation indeterminate is explicitly excluded
+PASS — unified timeline has surveillance, attribution, correction, observation plan and response
+PASS — post-spill response recommendations triggered
+PASS — HTML dossier generated (not PDF)

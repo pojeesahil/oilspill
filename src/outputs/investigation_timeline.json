@@ -1,0 +1,129 @@
+﻿{
+  "mmsi": "SYNTHETIC-001",
+  "events": [
+    {
+      "time": "2026-09-26T06:00:00Z",
+      "type": "ais_behavior_update",
+      "title": "AIS report",
+      "details": [],
+      "behavior_score": 0.08,
+      "position": {
+        "lat": 18.85,
+        "lon": 72.55
+      },
+      "evidence_role": "Pre-spill surveillance context; not causal attribution evidence."
+    },
+    {
+      "time": "2026-09-26T06:00:00Z",
+      "type": "hypothetical_release_test",
+      "title": "Release-time hypothesis tested for SYNTHETIC-001",
+      "consistency_fraction": 0.89,
+      "configured_threshold": 0.5,
+      "details": "This is a simulated release time, not an observed discharge.",
+      "evidence_role": "Counterfactual physical-consistency test."
+    },
+    {
+      "time": "2026-09-26T06:30:00Z",
+      "type": "ais_behavior_update",
+      "title": "AIS behavior signal",
+      "details": [
+        "speed_deviation"
+      ],
+      "behavior_score": 0.2531,
+      "position": {
+        "lat": 18.87,
+        "lon": 72.57
+      },
+      "evidence_role": "Pre-spill surveillance context; not causal attribution evidence."
+    },
+    {
+      "time": "2026-09-26T06:30:00Z",
+      "type": "hypothetical_release_test",
+      "title": "Release-time hypothesis tested for SYNTHETIC-001",
+      "consistency_fraction": 0.97,
+      "configured_threshold": 0.5,
+      "details": "This is a simulated release time, not an observed discharge.",
+      "evidence_role": "Counterfactual physical-consistency test."
+    },
+    {
+      "time": "2026-09-26T07:00:00Z",
+      "type": "ais_behavior_update",
+      "title": "AIS behavior signal",
+      "details": [
+        "speed_deviation",
+        "loitering"
+      ],
+      "behavior_score": 0.4497,
+      "position": {
+        "lat": 18.87,
+        "lon": 72.57
+      },
+      "evidence_role": "Pre-spill surveillance context; not causal attribution evidence."
+    },
+    {
+      "time": "2026-09-26T07:00:00Z",
+      "type": "hypothetical_release_test",
+      "title": "Release-time hypothesis tested for SYNTHETIC-001",
+      "consistency_fraction": 0.99,
+      "configured_threshold": 0.5,
+      "details": "This is a simulated release time, not an observed discharge.",
+      "evidence_role": "Counterfactual physical-consistency test."
+    },
+    {
+      "time": "2026-09-26T07:50:00Z",
+      "type": "ais_behavior_update",
+      "title": "AIS behavior signal",
+      "details": [
+        "speed_deviation",
+        "loitering",
+        "ais_gap"
+      ],
+      "behavior_score": 0.5979,
+      "position": {
+        "lat": 18.871,
+        "lon": 72.571
+      },
+      "evidence_role": "Pre-spill surveillance context; not causal attribution evidence."
+    },
+    {
+      "time": "2026-09-26T07:50:00Z",
+      "type": "hypothetical_release_test",
+      "title": "Release-time hypothesis tested for SYNTHETIC-001",
+      "consistency_fraction": 1.0,
+      "configured_threshold": 0.5,
+      "details": "This is a simulated release time, not an observed discharge.",
+      "evidence_role": "Counterfactual physical-consistency test."
+    },
+    {
+      "time": "2026-09-26T08:05:00Z",
+      "type": "ais_behavior_update",
+      "title": "AIS behavior signal",
+      "details": [
+        "speed_deviation",
+        "kinematic"
+      ],
+      "behavior_score": 0.6712,
+      "position": {
+        "lat": 19.0,
+        "lon": 72.63
+      },
+      "evidence_role": "Pre-spill surveillance context; not causal attribution evidence."
+    },
+    {
+      "time": "2026-09-26T12:00:00Z",
+      "type": "sar_spill_observation",
+      "title": "Spill observed by SAR",
+      "details": "Synthetic SAR spill observation",
+      "evidence_role": "Observed incident evidence."
+    },
+    {
+      "time": "2026-09-26T12:00:00Z",
+      "type": "response_recommendation",
+      "title": "Recommendation for Synthetic sensitive zone",
+      "details": "Prioritize protection planning",
+      "priority_rank": 1,
+      "evidence_role": "Configured decision-support rule; not a recorded action."
+    }
+  ],
+  "interpretation": "The timeline separates observed AIS/SAR events from simulated release hypotheses and suggested response actions."
+}

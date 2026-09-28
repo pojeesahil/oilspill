@@ -1,0 +1,13 @@
+{
+  "scenario_label": "SYNTHETIC TEST RESULTS \u2014 not operational validation",
+  "status": "PASS",
+  "checks": {
+    "positive synthetic candidate meets both configured tests": true,
+    "negative control keeps unknown source for review": true,
+    "candidate evidence explains centroid and vector thresholds": true,
+    "orientation indeterminate is explicitly excluded": true,
+    "unified timeline has surveillance, attribution, correction, observation plan and response": true,
+    "post-spill response recommendations triggered": true,
+    "HTML dossier generated (not PDF)": true
+  }
+}

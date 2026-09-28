@@ -1,0 +1,262 @@
+{
+  "mmsi": "SYNTHETIC-001",
+  "events": [
+    {
+      "time": "2026-09-26T06:00:00Z",
+      "type": "ais_behavior_update",
+      "title": "AIS report",
+      "details": [],
+      "behavior_score": 0.08,
+      "position": {
+        "lat": 18.85,
+        "lon": 72.55
+      },
+      "evidence_role": "Pre-spill surveillance context; not causal attribution evidence."
+    },
+    {
+      "time": "2026-09-26T06:00:00Z",
+      "type": "hypothetical_release_test",
+      "title": "Release-time hypothesis tested for SYNTHETIC-001",
+      "consistency_fraction": 0.89,
+      "configured_threshold": 0.5,
+      "details": "This is a simulated release time, not an observed discharge.",
+      "evidence_role": "Counterfactual physical-consistency test.",
+      "release_time": "2026-09-26T06:00:00Z",
+      "centroid_consistency_fraction": 0.89,
+      "physical_consistency_score": 0.6054,
+      "physical_consistency_vector": {
+        "endpoint_count": 100,
+        "endpoint_envelope_area_m2": 62940792.29,
+        "observed_footprint_area_m2": 18718374.78,
+        "endpoint_envelope_orientation_deg": 151.6,
+        "observed_footprint_orientation_deg": null,
+        "orientation_status": "observed_footprint_orientation_indeterminate",
+        "centroid_fraction": 0.89,
+        "polygon_support_fraction": 0.38,
+        "area_similarity": 0.2974,
+        "orientation_similarity": null,
+        "score_components_used": [
+          "centroid_fraction",
+          "polygon_support_fraction",
+          "area_similarity"
+        ],
+        "score_components_excluded": {
+          "orientation_similarity": "Metric is indeterminate for this geometry."
+        },
+        "physical_consistency_score": 0.6054,
+        "interpretation": "Composite score uses centroid consistency, polygon support, area similarity. Orientation was indeterminate and excluded from the composite score. This endpoint-envelope geometry proxy is not a resolved slick-shape model."
+      },
+      "simulations": 100,
+      "configured_centroid_threshold": 0.5,
+      "configured_vector_threshold": 0.5,
+      "vector_threshold_met": true,
+      "interpretation": "Counterfactual values describe physical consistency under the configured scenario. They are not guilt scores, source probabilities, or legal attribution."
+    },
+    {
+      "time": "2026-09-26T06:30:00Z",
+      "type": "ais_behavior_update",
+      "title": "AIS behavior signal",
+      "details": [
+        "speed_deviation"
+      ],
+      "behavior_score": 0.2531,
+      "position": {
+        "lat": 18.87,
+        "lon": 72.57
+      },
+      "evidence_role": "Pre-spill surveillance context; not causal attribution evidence."
+    },
+    {
+      "time": "2026-09-26T06:30:00Z",
+      "type": "hypothetical_release_test",
+      "title": "Release-time hypothesis tested for SYNTHETIC-001",
+      "consistency_fraction": 0.97,
+      "configured_threshold": 0.5,
+      "details": "This is a simulated release time, not an observed discharge.",
+      "evidence_role": "Counterfactual physical-consistency test.",
+      "release_time": "2026-09-26T06:30:00Z",
+      "centroid_consistency_fraction": 0.97,
+      "physical_consistency_score": 0.7117,
+      "physical_consistency_vector": {
+        "endpoint_count": 100,
+        "endpoint_envelope_area_m2": 54028081.33,
+        "observed_footprint_area_m2": 18718374.78,
+        "endpoint_envelope_orientation_deg": 169.56,
+        "observed_footprint_orientation_deg": null,
+        "orientation_status": "observed_footprint_orientation_indeterminate",
+        "centroid_fraction": 0.97,
+        "polygon_support_fraction": 0.55,
+        "area_similarity": 0.3465,
+        "orientation_similarity": null,
+        "score_components_used": [
+          "centroid_fraction",
+          "polygon_support_fraction",
+          "area_similarity"
+        ],
+        "score_components_excluded": {
+          "orientation_similarity": "Metric is indeterminate for this geometry."
+        },
+        "physical_consistency_score": 0.7117,
+        "interpretation": "Composite score uses centroid consistency, polygon support, area similarity. Orientation was indeterminate and excluded from the composite score. This endpoint-envelope geometry proxy is not a resolved slick-shape model."
+      },
+      "simulations": 100,
+      "configured_centroid_threshold": 0.5,
+      "configured_vector_threshold": 0.5,
+      "vector_threshold_met": true,
+      "interpretation": "Counterfactual values describe physical consistency under the configured scenario. They are not guilt scores, source probabilities, or legal attribution."
+    },
+    {
+      "time": "2026-09-26T07:00:00Z",
+      "type": "ais_behavior_update",
+      "title": "AIS behavior signal",
+      "details": [
+        "speed_deviation",
+        "loitering"
+      ],
+      "behavior_score": 0.4497,
+      "position": {
+        "lat": 18.87,
+        "lon": 72.57
+      },
+      "evidence_role": "Pre-spill surveillance context; not causal attribution evidence."
+    },
+    {
+      "time": "2026-09-26T07:00:00Z",
+      "type": "hypothetical_release_test",
+      "title": "Release-time hypothesis tested for SYNTHETIC-001",
+      "consistency_fraction": 0.99,
+      "configured_threshold": 0.5,
+      "details": "This is a simulated release time, not an observed discharge.",
+      "evidence_role": "Counterfactual physical-consistency test.",
+      "release_time": "2026-09-26T07:00:00Z",
+      "centroid_consistency_fraction": 0.99,
+      "physical_consistency_score": 0.7993,
+      "physical_consistency_vector": {
+        "endpoint_count": 100,
+        "endpoint_envelope_area_m2": 39876167.39,
+        "observed_footprint_area_m2": 18718374.78,
+        "endpoint_envelope_orientation_deg": 30.61,
+        "observed_footprint_orientation_deg": null,
+        "orientation_status": "observed_footprint_orientation_indeterminate",
+        "centroid_fraction": 0.99,
+        "polygon_support_fraction": 0.71,
+        "area_similarity": 0.4694,
+        "orientation_similarity": null,
+        "score_components_used": [
+          "centroid_fraction",
+          "polygon_support_fraction",
+          "area_similarity"
+        ],
+        "score_components_excluded": {
+          "orientation_similarity": "Metric is indeterminate for this geometry."
+        },
+        "physical_consistency_score": 0.7993,
+        "interpretation": "Composite score uses centroid consistency, polygon support, area similarity. Orientation was indeterminate and excluded from the composite score. This endpoint-envelope geometry proxy is not a resolved slick-shape model."
+      },
+      "simulations": 100,
+      "configured_centroid_threshold": 0.5,
+      "configured_vector_threshold": 0.5,
+      "vector_threshold_met": true,
+      "interpretation": "Counterfactual values describe physical consistency under the configured scenario. They are not guilt scores, source probabilities, or legal attribution."
+    },
+    {
+      "time": "2026-09-26T07:50:00Z",
+      "type": "ais_behavior_update",
+      "title": "AIS behavior signal",
+      "details": [
+        "speed_deviation",
+        "loitering",
+        "ais_gap"
+      ],
+      "behavior_score": 0.5979,
+      "position": {
+        "lat": 18.871,
+        "lon": 72.571
+      },
+      "evidence_role": "Pre-spill surveillance context; not causal attribution evidence."
+    },
+    {
+      "time": "2026-09-26T07:50:00Z",
+      "type": "hypothetical_release_test",
+      "title": "Release-time hypothesis tested for SYNTHETIC-001",
+      "consistency_fraction": 1.0,
+      "configured_threshold": 0.5,
+      "details": "This is a simulated release time, not an observed discharge.",
+      "evidence_role": "Counterfactual physical-consistency test.",
+      "release_time": "2026-09-26T07:50:00Z",
+      "centroid_consistency_fraction": 1.0,
+      "physical_consistency_score": 0.8794,
+      "physical_consistency_vector": {
+        "endpoint_count": 100,
+        "endpoint_envelope_area_m2": 26874082.83,
+        "observed_footprint_area_m2": 18718374.78,
+        "endpoint_envelope_orientation_deg": 99.89,
+        "observed_footprint_orientation_deg": null,
+        "orientation_status": "observed_footprint_orientation_indeterminate",
+        "centroid_fraction": 1.0,
+        "polygon_support_fraction": 0.81,
+        "area_similarity": 0.6965,
+        "orientation_similarity": null,
+        "score_components_used": [
+          "centroid_fraction",
+          "polygon_support_fraction",
+          "area_similarity"
+        ],
+        "score_components_excluded": {
+          "orientation_similarity": "Metric is indeterminate for this geometry."
+        },
+        "physical_consistency_score": 0.8794,
+        "interpretation": "Composite score uses centroid consistency, polygon support, area similarity. Orientation was indeterminate and excluded from the composite score. This endpoint-envelope geometry proxy is not a resolved slick-shape model."
+      },
+      "simulations": 100,
+      "configured_centroid_threshold": 0.5,
+      "configured_vector_threshold": 0.5,
+      "vector_threshold_met": true,
+      "interpretation": "Counterfactual values describe physical consistency under the configured scenario. They are not guilt scores, source probabilities, or legal attribution."
+    },
+    {
+      "time": "2026-09-26T08:05:00Z",
+      "type": "ais_behavior_update",
+      "title": "AIS behavior signal",
+      "details": [
+        "speed_deviation",
+        "kinematic"
+      ],
+      "behavior_score": 0.6712,
+      "position": {
+        "lat": 19.0,
+        "lon": 72.63
+      },
+      "evidence_role": "Pre-spill surveillance context; not causal attribution evidence."
+    },
+    {
+      "time": "2026-09-26T12:00:00Z",
+      "type": "sar_spill_observation",
+      "title": "Spill observed by SAR",
+      "details": "Synthetic SAR spill observation",
+      "evidence_role": "Observed incident evidence."
+    },
+    {
+      "time": "2026-09-26T12:00:00Z",
+      "type": "response_recommendation",
+      "title": "Recommendation for Synthetic sensitive zone",
+      "details": "Prioritize protection planning",
+      "priority_rank": 1,
+      "evidence_role": "Configured decision-support rule; not a recorded action."
+    },
+    {
+      "time": "2026-09-26T12:00:00Z",
+      "type": "counterfactual_candidate_summary",
+      "title": "Counterfactual assessment for SYNTHETIC-001",
+      "status": "meets_configured_vector_threshold",
+      "physical_consistency_fraction": 0.9625,
+      "physical_consistency_score": 0.749,
+      "configured_centroid_threshold": 0.5,
+      "configured_vector_threshold": 0.5,
+      "evidence_role": "Post-incident physical-consistency evidence; surveillance signals are not counted as causal evidence.",
+      "details": "The candidate met the configured physical-consistency test; this does not establish source identity.",
+      "interpretation": "Counterfactual values describe physical consistency under the configured scenario. They are not guilt scores, source probabilities, or legal attribution."
+    }
+  ],
+  "interpretation": "The timeline separates observed AIS/SAR events from simulated release hypotheses and suggested response actions. Counterfactual values describe physical consistency under the configured scenario. They are not guilt scores, source probabilities, or legal attribution."
+}

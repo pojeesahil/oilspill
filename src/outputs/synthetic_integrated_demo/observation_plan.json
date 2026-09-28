@@ -1,0 +1,80 @@
+{
+  "recommended_observation_window": {
+    "time": "2026-09-27T12:00:00Z",
+    "separation_score": 0.5989660032971325,
+    "predicted_regions": [
+      {
+        "hypothesis_id": "H-A",
+        "prior_weight": 0.5,
+        "center": {
+          "lat": 18.951000000670113,
+          "lon": 72.75049999700352
+        },
+        "rms_spread_m": 123.00170538702038
+      },
+      {
+        "hypothesis_id": "H-B",
+        "prior_weight": 0.5,
+        "center": {
+          "lat": 19.051000000673113,
+          "lon": 72.85049999698647
+        },
+        "rms_spread_m": 122.98820232076103
+      }
+    ],
+    "interpretation": "Higher means the hypotheses predict more separated regions relative to forecast spread and observation uncertainty."
+  },
+  "ranked_windows": [
+    {
+      "time": "2026-09-27T12:00:00Z",
+      "separation_score": 0.5989660032971325,
+      "predicted_regions": [
+        {
+          "hypothesis_id": "H-A",
+          "prior_weight": 0.5,
+          "center": {
+            "lat": 18.951000000670113,
+            "lon": 72.75049999700352
+          },
+          "rms_spread_m": 123.00170538702038
+        },
+        {
+          "hypothesis_id": "H-B",
+          "prior_weight": 0.5,
+          "center": {
+            "lat": 19.051000000673113,
+            "lon": 72.85049999698647
+          },
+          "rms_spread_m": 122.98820232076103
+        }
+      ],
+      "interpretation": "Higher means the hypotheses predict more separated regions relative to forecast spread and observation uncertainty."
+    },
+    {
+      "time": "2026-09-27T06:00:00Z",
+      "separation_score": 0.10718405294046242,
+      "predicted_regions": [
+        {
+          "hypothesis_id": "H-A",
+          "prior_weight": 0.5,
+          "center": {
+            "lat": 18.92100000066921,
+            "lon": 72.72049999700863
+          },
+          "rms_spread_m": 123.00574424668626
+        },
+        {
+          "hypothesis_id": "H-B",
+          "prior_weight": 0.5,
+          "center": {
+            "lat": 18.93100000066951,
+            "lon": 72.72549999700693
+          },
+          "rms_spread_m": 123.0043985791076
+        }
+      ],
+      "interpretation": "Higher means the hypotheses predict more separated regions relative to forecast spread and observation uncertainty."
+    }
+  ],
+  "score_meaning": "Synthetic simulation output. Heuristic forecast-separation score; not a formal information gain, satellite scheduling guarantee, or probability."
+}
