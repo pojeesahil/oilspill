@@ -13,7 +13,6 @@ import { FullAnalysisResponse } from "./types";
 import { Micro, Icon } from "./components/Icon";
 
 const TABS = [
-  "Workspace",
   "Drift modelling",
   "Satellite detection",
   "Vessel attribution",
@@ -27,8 +26,8 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [activeTab, setActiveTab] = useState("Workspace");
-  const [driftViewMode, setDriftViewMode] = useState<"radar" | "physics">("radar");
+  const [activeTab, setActiveTab] = useState("Drift modelling");
+  const [driftViewMode, setDriftViewMode] = useState<"physics" | "radar">("physics");
 
   const [selectedMmsi, setSelectedMmsi] = useState<string>("IND-7319");
 
@@ -112,21 +111,21 @@ export default function App() {
             <div className="flex items-center rounded border border-line bg-surface/50 p-0.5">
               <button
                 type="button"
-                onClick={() => setDriftViewMode("radar")}
-                className={`px-2.5 py-0.5 rounded cursor-pointer transition-all ${
-                  driftViewMode === "radar" ? "bg-flare text-night font-bold" : "text-fog hover:text-white"
-                }`}
-              >
-                RADAR
-              </button>
-              <button
-                type="button"
                 onClick={() => setDriftViewMode("physics")}
                 className={`px-2.5 py-0.5 rounded cursor-pointer transition-all ${
                   driftViewMode === "physics" ? "bg-tide text-night font-bold" : "text-fog hover:text-white"
                 }`}
               >
                 WORKBENCH (+BAYESIAN)
+              </button>
+              <button
+                type="button"
+                onClick={() => setDriftViewMode("radar")}
+                className={`px-2.5 py-0.5 rounded cursor-pointer transition-all ${
+                  driftViewMode === "radar" ? "bg-flare text-night font-bold" : "text-fog hover:text-white"
+                }`}
+              >
+                RADAR
               </button>
             </div>
           )}
@@ -143,12 +142,10 @@ export default function App() {
         </div>
       </nav>
 
-      {(activeTab === "Workspace" || (activeTab === "Drift modelling" && driftViewMode === "radar")) && (
+      {activeTab === "Drift modelling" && driftViewMode === "radar" && (
         <div className="mission-shell">
           <aside className="coordinate-rail">
-            <Micro className="rail-word">
-              {activeTab === "Workspace" ? "MISSION WORKSPACE" : "DRIFT & HYDRODYNAMICS"}
-            </Micro>
+            <Micro className="rail-word">DRIFT & HYDRODYNAMICS</Micro>
             <span className="rail-line" />
             <span className="rail-number">{selectedShip?.current_position.lat.toFixed(2) || "19°07"}</span>
             <span className="rail-number">{selectedShip?.current_position.lon.toFixed(2) || "72°87"}</span>
@@ -160,12 +157,10 @@ export default function App() {
               <div>
                 <Micro className="text-fog">{activeCase.label}</Micro>
                 <p className="mt-1 font-display text-3xl font-medium">
-                  {activeTab === "Workspace" ? "Tactical Command Console & Fleet Intelligence" : "Tactical Sonar & Hydrodynamic Drift"}
+                  Tactical Sonar & Hydrodynamic Drift
                 </p>
                 <p className="font-mono text-xs text-tide mt-0.5">
-                  {activeTab === "Workspace"
-                    ? `Tracking ${ships.length} ships with real-time multi-sensor telemetry & behavioral anomaly screening`
-                    : `Tracking ${ships.length} ships with individual forecast & backtrack physics`}
+                  Tracking {ships.length} ships with individual forecast & backtrack physics
                 </p>
               </div>
               <div className="slick-readout">
