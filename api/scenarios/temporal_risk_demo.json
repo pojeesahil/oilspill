@@ -1,0 +1,40 @@
+{
+    "as_of_time":  "2026-09-26T12:00:00Z",
+    "risk_config":  {
+                        "half_life_hours":  2,
+                        "event_weights":  {
+                                              "speed_deviation":  0.35,
+                                              "loitering":  0.4,
+                                              "ais_gap":  0.5,
+                                              "kinematic":  0.6,
+                                              "contextual_behavior_signal":  0.45
+                                          }
+                    },
+    "vessels":  [
+                    {
+                        "mmsi":  "IND-7319",
+                        "events":  [
+                                       {
+                                           "time":  "2026-09-26T06:30:00Z",
+                                           "type":  "speed_deviation",
+                                           "severity":  0.7
+                                       },
+                                       {
+                                           "time":  "2026-09-26T07:00:00Z",
+                                           "type":  "loitering",
+                                           "severity":  0.8
+                                       },
+                                       {
+                                           "time":  "2026-09-26T07:50:00Z",
+                                           "type":  "ais_gap",
+                                           "severity":  0.6
+                                       },
+                                       {
+                                           "time":  "2026-09-26T08:05:00Z",
+                                           "type":  "kinematic",
+                                           "severity":  0.9
+                                       }
+                                   ]
+                    }
+                ]
+}

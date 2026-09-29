@@ -38,6 +38,9 @@ app.add_middleware(
 )
 
 SCENARIOS_DIR = os.path.join(str(WORKSPACE_ROOT), "scenarios")
+if not os.path.exists(SCENARIOS_DIR):
+    SCENARIOS_DIR = os.path.join(str(CURRENT_DIR), "scenarios")
+
 
 @app.get("/api/health")
 def health_check():

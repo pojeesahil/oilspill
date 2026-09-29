@@ -1,0 +1,79 @@
+{
+  "scenario_label": "MUMBAI COASTAL SURVEILLANCE PRIORITIZATION",
+  "candidates": [
+    {
+      "mmsi": "IND-7319",
+      "behavior_index": 0.6711919809339882,
+      "opportunity": {
+        "signals": {
+          "vessel_spill_capability": 1.0,
+          "operational_context": 0.8,
+          "sensitive_area_downstream": 0.8,
+          "release_conditions": 0.7
+        },
+        "weights": {
+          "vessel_spill_capability": 0.35,
+          "operational_context": 0.20,
+          "sensitive_area_downstream": 0.25,
+          "release_conditions": 0.20
+        }
+      },
+      "uncertainty": {
+        "signals": {
+          "ais_freshness_uncertainty": 0.3,
+          "identity_uncertainty": 0.1,
+          "environmental_data_uncertainty": 0.5
+        },
+        "weights": {
+          "ais_freshness_uncertainty": 0.3,
+          "identity_uncertainty": 0.2,
+          "environmental_data_uncertainty": 0.5
+        }
+      },
+      "impact_case": {
+        "release": {
+          "lat": 19.0,
+          "lon": 72.63
+        },
+        "forecast": {
+          "ensemble_runs": 200,
+          "random_seed": 143,
+          "duration_hours": 24,
+          "step_minutes": 30,
+          "current_east_mps": 0.1,
+          "current_north_mps": 0.05,
+          "current_sd_mps": 0.03,
+          "wind_east_mps": 1.0,
+          "wind_north_mps": 0.2,
+          "wind_sd_mps": 0.4,
+          "windage_fraction": 0.02,
+          "diffusion_m2_s": 25.0
+        },
+        "ecosystem_zones": {
+          "type": "FeatureCollection",
+          "features": [
+            {
+              "type": "Feature",
+              "properties": {
+                "name": "Prongs Reef Sanctuary",
+                "consequence_weight": 1.0
+              },
+              "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                  [
+  [72.70, 18.94],
+  [72.78, 18.94],
+  [72.78, 19.08],
+  [72.70, 19.08],
+  [72.70, 18.94]
+]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

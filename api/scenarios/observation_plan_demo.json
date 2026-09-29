@@ -1,0 +1,50 @@
+﻿{
+  "settings": {
+    "earth_radius_m": 6371008.8,
+    "measurement_sigma_m": 5000
+  },
+  "candidate_observation_windows": [
+    {
+      "time": "2026-09-27T06:00:00Z",
+      "hypotheses": [
+        {
+          "hypothesis_id": "H-A",
+          "prior_weight": 0.5,
+          "samples": [
+            {"lat": 18.920, "lon": 72.720},
+            {"lat": 18.922, "lon": 72.721}
+          ]
+        },
+        {
+          "hypothesis_id": "H-B",
+          "prior_weight": 0.5,
+          "samples": [
+            {"lat": 18.930, "lon": 72.725},
+            {"lat": 18.932, "lon": 72.726}
+          ]
+        }
+      ]
+    },
+    {
+      "time": "2026-09-27T12:00:00Z",
+      "hypotheses": [
+        {
+          "hypothesis_id": "H-A",
+          "prior_weight": 0.5,
+          "samples": [
+            {"lat": 18.950, "lon": 72.750},
+            {"lat": 18.952, "lon": 72.751}
+          ]
+        },
+        {
+          "hypothesis_id": "H-B",
+          "prior_weight": 0.5,
+          "samples": [
+            {"lat": 19.050, "lon": 72.850},
+            {"lat": 19.052, "lon": 72.851}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "scenario_label": "MUMBAI HARBOUR TACTICAL RESPONSE ALLOCATION",
+  "impact_forecast": {
+    "zones": [
+      {
+        "name": "Prongs Reef Sanctuary",
+        "exposure_fraction": 0.77,
+        "earliest_eta_hours": 8.0,
+        "consequence_weight": 1.0
+      },
+      {
+        "name": "Malabar Marine Zone",
+        "exposure_fraction": 0.2,
+        "earliest_eta_hours": 20.0,
+        "consequence_weight": 0.4
+      }
+    ]
+  },
+  "policy": {
+    "rules": [
+      {
+        "rule_id": "high_exposure_soon",
+        "priority_rank": 1,
+        "conditions": [
+          {"field": "exposure_fraction", "operator": "gte", "value": 0.7},
+          {"field": "earliest_eta_hours", "operator": "lte", "value": 12.0}
+        ],
+        "actions": [
+          "Prioritize protection planning for this zone",
+          "Request an updated observation near the predicted trajectory"
+        ]
+      },
+      {
+        "rule_id": "exposure_monitoring",
+        "priority_rank": 2,
+        "conditions": [
+          {"field": "exposure_fraction", "operator": "gte", "value": 0.2}
+        ],
+        "actions": [
+          "Continue monitoring the forecast for this zone"
+        ]
+      }
+    ]
+  }
+}
