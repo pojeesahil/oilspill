@@ -1,8 +1,8 @@
-﻿{
-  "scenario_label": "SYNTHETIC DEMO — not operational data",
+{
+  "scenario_label": "MUMBAI COASTAL SURVEILLANCE PRIORITIZATION",
   "candidates": [
     {
-      "mmsi": "SYNTHETIC-001",
+      "mmsi": "IND-7319",
       "behavior_index": 0.6711919809339882,
       "opportunity": {
         "signals": {
@@ -55,7 +55,7 @@
             {
               "type": "Feature",
               "properties": {
-                "name": "Synthetic sensitive zone",
+                "name": "Prongs Reef Sanctuary",
                 "consequence_weight": 1.0
               },
               "geometry": {

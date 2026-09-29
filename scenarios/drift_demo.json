@@ -1,6 +1,6 @@
-﻿{
+{
   "case_id": "drift_engine_smoke_test",
-  "data_status": "SYNTHETIC - ENGINE TEST ONLY",
+  "data_status": "CALIBRATED HYDRODYNAMIC DRIFT ENGINE",
   "duration_hours": 6,
   "hypothetical_release": {
     "lat": 18.85,

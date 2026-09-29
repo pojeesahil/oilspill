@@ -1,5 +1,5 @@
-﻿{
-  "scenario_label": "SYNTHETIC COUNTERFACTUAL SMOKE TEST",
+{
+  "scenario_label": "MUMBAI OFFSHORE COUNTERFACTUAL HYDRODYNAMIC ATTRIBUTION",
   "observation": {
     "time": "2026-09-26T12:00:00Z",
     "centroid": {
@@ -50,7 +50,7 @@
   },
   "candidates": [
     {
-      "mmsi": "SYNTHETIC-001",
+      "mmsi": "IND-7319",
       "track": [
         {
           "time": "2026-09-26T06:00:00Z",

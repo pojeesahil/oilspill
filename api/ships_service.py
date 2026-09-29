@@ -35,7 +35,8 @@ from backend.environment.contextual_queue import add_contextual_events
 from backend.environment.escape_intercept import analyze as analyze_escape_intercept
 from backend.forensics.merge_surveillance_timeline import merge_surveillance_timeline
 
-WORKSPACE_ROOT = Path(r"c:\Users\sahil\Documents\antig\sih143\we_have_to_win_sih")
+CURRENT_DIR = Path(__file__).resolve().parent
+WORKSPACE_ROOT = CURRENT_DIR.parent
 SCENARIOS_DIR = WORKSPACE_ROOT / "scenarios"
 OUTPUTS_DIR = WORKSPACE_ROOT / "outputs"
 

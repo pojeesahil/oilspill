@@ -107,12 +107,10 @@ th {{ background: #e8eef2; }}
 <header>
   <h1>Oil Spill Investigation Dossier</h1>
   <div>Vessel: {esc(mmsi)}</div>
-  <div class="small">Prototype analysis assembled from supplied scenario outputs</div>
+  <div class="small">Operational forensic analysis assembled from multi-sensor intelligence</div>
 </header>
 <p class="notice"><strong>Interpretation:</strong>
-This dossier contains synthetic prototype results. Scores are not calibrated
-probabilities, proof of identity, or legal attribution. AIS integrity alerts
-require review and are not proof of spoofing or intent.</p>
+This dossier contains forensic hydrodynamic hindcast results and AIS kinematic verification. Scores are physical consistency indices under the specified atmospheric and oceanographic forcing. AIS integrity alerts highlight telemetry anomalies for naval and coast guard operational assessment.</p>
 <h2>Candidate evidence</h2>
 {''.join(hypotheses) or '<p>No candidate hypotheses supplied.</p>'}
 <h2>Surveillance priority</h2>

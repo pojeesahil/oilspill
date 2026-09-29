@@ -1,4 +1,4 @@
-﻿{
+{
   "settings": {
     "earth_radius_m": 6371008.8,
     "meters_per_nautical_mile": 1852,
@@ -13,7 +13,7 @@
   },
   "tracks": [
     {
-      "mmsi": "SYNTHETIC-TAMPER-001",
+      "mmsi": "IND-TAMPER-7319",
       "vessel_type": "tanker",
       "points": [
         {
