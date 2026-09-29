@@ -13,6 +13,7 @@ import { FullAnalysisResponse } from "./types";
 import { Micro, Icon } from "./components/Icon";
 
 const TABS = [
+  "Workspace",
   "Drift modelling",
   "Satellite detection",
   "Vessel attribution",
@@ -26,7 +27,7 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [activeTab, setActiveTab] = useState("Drift modelling");
+  const [activeTab, setActiveTab] = useState("Workspace");
   const [driftViewMode, setDriftViewMode] = useState<"radar" | "physics">("radar");
 
   const [selectedMmsi, setSelectedMmsi] = useState<string>("IND-7319");
@@ -92,7 +93,6 @@ export default function App() {
 
       <nav className="future-nav flex items-center justify-between" aria-label="Future application modules">
         <div className="flex items-center gap-2 overflow-x-auto">
-          <span className="future-nav-label">Workspace</span>
           {TABS.map((item) => (
             <span
               key={item}
@@ -143,10 +143,12 @@ export default function App() {
         </div>
       </nav>
 
-      {activeTab === "Drift modelling" && driftViewMode === "radar" && (
+      {(activeTab === "Workspace" || (activeTab === "Drift modelling" && driftViewMode === "radar")) && (
         <div className="mission-shell">
           <aside className="coordinate-rail">
-            <Micro className="rail-word">DRIFT & HYDRODYNAMICS</Micro>
+            <Micro className="rail-word">
+              {activeTab === "Workspace" ? "MISSION WORKSPACE" : "DRIFT & HYDRODYNAMICS"}
+            </Micro>
             <span className="rail-line" />
             <span className="rail-number">{selectedShip?.current_position.lat.toFixed(2) || "19°07"}</span>
             <span className="rail-number">{selectedShip?.current_position.lon.toFixed(2) || "72°87"}</span>
@@ -157,9 +159,13 @@ export default function App() {
             <div className="theatre-heading">
               <div>
                 <Micro className="text-fog">{activeCase.label}</Micro>
-                <p className="mt-1 font-display text-3xl font-medium">Tactical Sonar & Hydrodynamic Drift</p>
+                <p className="mt-1 font-display text-3xl font-medium">
+                  {activeTab === "Workspace" ? "Tactical Command Console & Fleet Intelligence" : "Tactical Sonar & Hydrodynamic Drift"}
+                </p>
                 <p className="font-mono text-xs text-tide mt-0.5">
-                  Tracking {ships.length} ships with individual forecast & backtrack physics
+                  {activeTab === "Workspace"
+                    ? `Tracking ${ships.length} ships with real-time multi-sensor telemetry & behavioral anomaly screening`
+                    : `Tracking ${ships.length} ships with individual forecast & backtrack physics`}
                 </p>
               </div>
               <div className="slick-readout">
