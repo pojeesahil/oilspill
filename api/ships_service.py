@@ -28,6 +28,7 @@ from backend.vessels.temporal_risk import calculate_temporal_risk
 from backend.environment.dynamic_queue import build_dynamic_queue
 from backend.forensics.timeline import build_investigation_timeline
 from backend.forensics.merge_integrity_timeline import merge_integrity_flags
+from backend.forensics.ais_trust import verify_sar_ais
 from backend.forensics.dossier import make_dossier
 from backend.vessels.contextual_behavior import score_scenario as score_contextual_behavior
 from backend.environment.contextual_queue import add_contextual_events
@@ -703,6 +704,13 @@ def compute_multi_ship_data():
         dr_case = json.loads(dr_path.read_text(encoding="utf-8-sig"))
         dead_reckoning = assess_gap_detections(dr_case)
 
+    # === SAR / AIS Cross-Verification (AIS Trust) ===
+    ais_trust = {}
+    at_path = SCENARIOS_DIR / "ais_trust_demo.json"
+    if at_path.exists():
+        at_case = json.loads(at_path.read_text(encoding="utf-8-sig"))
+        ais_trust = verify_sar_ais(at_case)
+
     # === COMMIT 3: Bayesian Forecast Update ===
     forecast_update = {}
     fu_path = SCENARIOS_DIR / "forecast_update_demo.json"
@@ -811,6 +819,7 @@ def compute_multi_ship_data():
         "selected_mmsi": primary_ship["mmsi"],
         "overall_attribution": attribution_results,
         "dead_reckoning": dead_reckoning,
+        "ais_trust": ais_trust,
         "observation_plan": observation_plan,
         "forecast_update": forecast_update,
         "ais_integrity": fleet_integrity,

@@ -89,6 +89,11 @@ export interface Candidate {
   physical_consistency_vector?: PhysicalConsistencyVector;
   compatible_simulations: number;
   total_simulations: number;
+  simulation_endpoints?: {
+    lat: number;
+    lon: number;
+    compatible: boolean;
+  }[];
   release_hypotheses: ReleaseHypothesis[];
   sample_trajectory: TrajectoryPoint[];
 }
@@ -387,12 +392,45 @@ export interface EscapeInterceptResult {
   interpretation?: string;
 }
 
+export interface SarAisMatch {
+  detection_id: string;
+  mmsi: string;
+  distance_m: number;
+  time_delta_seconds: number;
+  status: string;
+  interpretation: string;
+}
+
+export interface UnmatchedSarDetection {
+  detection_id: string;
+  lat: number;
+  lon: number;
+  status: string;
+  interpretation: string;
+}
+
+export interface UnmatchedAisPosition {
+  mmsi: string;
+  time: string;
+  status: string;
+  interpretation: string;
+}
+
+export interface AisTrustResult {
+  sar_acquisition_time: string;
+  matches: SarAisMatch[];
+  unmatched_sar_detections: UnmatchedSarDetection[];
+  ais_positions_without_sar_match_inside_scene: UnmatchedAisPosition[];
+  score_meaning?: string;
+}
+
 export interface FullAnalysisResponse {
   active_case?: ActiveCase;
   ships: ShipData[];
   selected_mmsi?: string;
   overall_attribution?: Attribution;
   dead_reckoning?: DeadReckoningResult;
+  ais_trust?: AisTrustResult;
   observation_plan?: ObservationPlanResult;
   forecast_update?: ForecastUpdateResult;
   ais_integrity?: AisIntegrityResult;

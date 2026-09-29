@@ -94,6 +94,7 @@ def evaluate_counterfactuals(scenario):
         sample_trajectory = None
         vector_weighted_sum = 0.0
         vector_endpoint_count = 0
+        all_candidate_endpoints = []
 
         for point_index, ais_point in enumerate(candidate["track"]):
             release_time = parse_time(ais_point["time"])
@@ -139,11 +140,18 @@ def evaluate_counterfactuals(scenario):
                     config.earth_radius_m,
                 )
 
-                if distance <= radius_m:
+                is_compat = distance <= radius_m
+                if is_compat:
                     compatible += 1
                     release_compatible += 1
 
                 total += 1
+                all_candidate_endpoints.append({
+                    "lat": round(endpoint["lat"], 5),
+                    "lon": round(endpoint["lon"], 5),
+                    "compatible": is_compat,
+                    "release_time": ais_point["time"],
+                })
 
                 if sample_trajectory is None:
                     sample_trajectory = path
@@ -189,6 +197,7 @@ def evaluate_counterfactuals(scenario):
             ),
             "compatible_simulations": compatible,
             "total_simulations": total,
+            "simulation_endpoints": all_candidate_endpoints,
             "release_hypotheses": release_results,
             "sample_trajectory": sample_trajectory,
             "score_meaning": (

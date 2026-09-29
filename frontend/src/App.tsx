@@ -7,7 +7,8 @@ import { AttributionTab } from "./components/AttributionTab";
 import { ImpactTab } from "./components/ImpactTab";
 import { SatelliteTab } from "./components/SatelliteTab";
 import { DossierTab } from "./components/DossierTab";
-import { fetchFullAnalysis } from "./api";
+import { DriftTab } from "./components/DriftTab";
+import { fetchFullAnalysis, refreshAnalysis } from "./api";
 import { FullAnalysisResponse } from "./types";
 import { Micro, Icon } from "./components/Icon";
 
@@ -24,7 +25,9 @@ export default function App() {
   const [data, setData] = useState<FullAnalysisResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState("Drift modelling");
+  const [driftViewMode, setDriftViewMode] = useState<"radar" | "physics">("radar");
 
   const [selectedMmsi, setSelectedMmsi] = useState<string>("IND-7319");
 
@@ -41,6 +44,18 @@ export default function App() {
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    try {
+      const res = await refreshAnalysis();
+      setData(res);
+    } catch (e: any) {
+      console.error(e);
+    } finally {
+      setRefreshing(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -75,23 +90,60 @@ export default function App() {
       <div className="noise pointer-events-none fixed inset-0 z-50" />
       <Header theme={theme} onThemeChange={setTheme} />
 
-      <nav className="future-nav" aria-label="Future application modules">
-        <span className="future-nav-label">Workspace</span>
-        {TABS.map((item) => (
-          <span
-            key={item}
-            className={activeTab === item ? "future-nav-item current" : "future-nav-item"}
-            onClick={() => setActiveTab(item)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && setActiveTab(item)}
+      <nav className="future-nav flex items-center justify-between" aria-label="Future application modules">
+        <div className="flex items-center gap-2 overflow-x-auto">
+          <span className="future-nav-label">Workspace</span>
+          {TABS.map((item) => (
+            <span
+              key={item}
+              className={activeTab === item ? "future-nav-item current" : "future-nav-item"}
+              onClick={() => setActiveTab(item)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === "Enter" && setActiveTab(item)}
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-3 pr-4 font-mono text-xs">
+          {activeTab === "Drift modelling" && (
+            <div className="flex items-center rounded border border-line bg-surface/50 p-0.5">
+              <button
+                type="button"
+                onClick={() => setDriftViewMode("radar")}
+                className={`px-2.5 py-0.5 rounded cursor-pointer transition-all ${
+                  driftViewMode === "radar" ? "bg-flare text-night font-bold" : "text-fog hover:text-white"
+                }`}
+              >
+                RADAR
+              </button>
+              <button
+                type="button"
+                onClick={() => setDriftViewMode("physics")}
+                className={`px-2.5 py-0.5 rounded cursor-pointer transition-all ${
+                  driftViewMode === "physics" ? "bg-tide text-night font-bold" : "text-fog hover:text-white"
+                }`}
+              >
+                WORKBENCH (+BAYESIAN)
+              </button>
+            </div>
+          )}
+
+          <button
+            type="button"
+            onClick={handleRefresh}
+            disabled={refreshing}
+            className="flex items-center gap-1.5 px-3 py-1 rounded border border-line bg-surface hover:border-flare text-xs font-mono text-fog hover:text-white transition-all cursor-pointer"
           >
-            {item}
-          </span>
-        ))}
+            <span className={`size-2 rounded-full ${refreshing ? "bg-sun animate-ping" : "bg-kelp"}`} />
+            <span>{refreshing ? "SIMULATING..." : "RECOMPUTE"}</span>
+          </button>
+        </div>
       </nav>
 
-      {activeTab === "Drift modelling" && (
+      {activeTab === "Drift modelling" && driftViewMode === "radar" && (
         <div className="mission-shell">
           <aside className="coordinate-rail">
             <Micro className="rail-word">DRIFT & HYDRODYNAMICS</Micro>
@@ -190,6 +242,15 @@ export default function App() {
         </div>
       )}
 
+      {activeTab === "Drift modelling" && driftViewMode === "physics" && (
+        <DriftTab
+          ships={ships}
+          selectedMmsi={selectedMmsi}
+          onSelectMmsi={setSelectedMmsi}
+          forecastUpdate={data.forecast_update}
+        />
+      )}
+
       {activeTab === "Vessel attribution" && (
         <AttributionTab
           ships={ships}
@@ -217,6 +278,7 @@ export default function App() {
           deadReckoning={data.dead_reckoning}
           observationPlan={data.observation_plan}
           escapeIntercept={data.escape_intercept}
+          aisTrust={data.ais_trust}
         />
       )}
 

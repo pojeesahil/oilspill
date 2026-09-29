@@ -18,6 +18,9 @@ export function AttributionTab({
   investigationTimeline,
 }: AttributionTabProps) {
   const [activeMmsi, setActiveMmsi] = useState<string>(selectedMmsi || ships[0]?.mmsi || "");
+  const [showEndpoints, setShowEndpoints] = useState(true);
+  const [showStreamlines, setShowStreamlines] = useState(true);
+  const [showFootprint, setShowFootprint] = useState(true);
   const gradientId = useId();
 
   const selectedShip = ships.find((s) => s.mmsi === activeMmsi) || ships[0];
@@ -25,6 +28,7 @@ export function AttributionTab({
   const matchPercent = candidate ? Math.round(candidate.physical_consistency_fraction * 100) : 0;
   const matchRuns = candidate ? candidate.compatible_simulations : 0;
   const totalRuns = candidate ? candidate.total_simulations : 400;
+  const candidateEndpoints = candidate?.simulation_endpoints || [];
 
   const timelineEvents = investigationTimeline?.events || [];
 
@@ -33,15 +37,14 @@ export function AttributionTab({
     onSelectMmsi(mmsi);
   };
 
-  // Zoomed-in coordinate projection for the 800x440 canvas
-  // Tightly covers the candidate ships and slick area (18.75°N - 19.45°N, 72.40°E - 72.85°E)
-  const mapMinLat = 18.75;
-  const mapMaxLat = 19.42;
-  const mapMinLon = 72.40;
+  // Zoomed-in coordinate projection covering all candidate ships, 400 simulation points, and slick area
+  const mapMinLat = 18.60;
+  const mapMaxLat = 19.45;
+  const mapMinLon = 72.35;
   const mapMaxLon = 72.85;
 
-  const toMapX = (lon: number) => 60 + ((lon - mapMinLon) / (mapMaxLon - mapMinLon)) * 680;
-  const toMapY = (lat: number) => 380 - ((lat - mapMinLat) / (mapMaxLat - mapMinLat)) * 320;
+  const toMapX = (lon: number) => 50 + ((lon - mapMinLon) / (mapMaxLon - mapMinLon)) * 660;
+  const toMapY = (lat: number) => 390 - ((lat - mapMinLat) / (mapMaxLat - mapMinLat)) * 340;
 
   // Slick Centroid MUM-04
   const slickLat = 18.882;
@@ -189,6 +192,56 @@ export function AttributionTab({
           </table>
         </div>
 
+        {/* INTERACTIVE SIMULATION VISUALIZATION TOGGLES */}
+        <div className="flex flex-wrap items-center justify-between gap-2 my-2 px-1">
+          <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
+            <button
+              type="button"
+              onClick={() => setShowEndpoints((v) => !v)}
+              className={`px-3 py-1 rounded border transition-all cursor-pointer ${
+                showEndpoints
+                  ? "bg-flare/20 border-flare text-flare font-medium"
+                  : "bg-surface border-line text-fog"
+              }`}
+            >
+              400 Monte Carlo Points ({candidateEndpoints.length || totalRuns})
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowStreamlines((v) => !v)}
+              className={`px-3 py-1 rounded border transition-all cursor-pointer ${
+                showStreamlines
+                  ? "bg-tide/20 border-tide text-tide font-medium"
+                  : "bg-surface border-line text-fog"
+              }`}
+            >
+              Simulation Streamlines
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowFootprint((v) => !v)}
+              className={`px-3 py-1 rounded border transition-all cursor-pointer ${
+                showFootprint
+                  ? "bg-sun/20 border-sun text-sun font-medium"
+                  : "bg-surface border-line text-fog"
+              }`}
+            >
+              Slick Footprint (12.8 KM²)
+            </button>
+          </div>
+
+          <div className="flex items-center gap-3 font-mono text-micro text-fog">
+            <span className="flex items-center gap-1.5">
+              <span className="size-2 rounded-full bg-flare" />
+              <span>In-Slick Match: <b className="text-white font-bold">{matchRuns}</b></span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="size-2 rounded-full bg-fog" />
+              <span>Outliers: <b className="text-white font-bold">{totalRuns - matchRuns}</b></span>
+            </span>
+          </div>
+        </div>
+
         {/* ZOOMED TACTICAL ATTRIBUTION MAP SCOPE */}
         <div className="tactical-scope flex items-center justify-center p-2 relative">
           <svg className="w-full h-full max-h-[440px]" viewBox="0 0 800 440" aria-label="Attribution Map">
@@ -232,27 +285,84 @@ export function AttributionTab({
               </text>
             </g>
 
-            {/* PRAGATI: 385 COMPATIBLE SIMULATION RUNS BUNDLE */}
-            <g className="pragati-bundle">
-              {/* Multiple simulated advection paths demonstrating the 385 runs */}
-              <path d={`M ${slickX} ${slickY} Q ${(slickX + pragatiX) / 2 - 20} ${(slickY + pragatiY) / 2 + 15} ${pragatiX} ${pragatiY}`} fill="none" stroke={`url(#${gradientId}-bundle)`} strokeWidth="3" strokeDasharray="5 3" />
-              <path d={`M ${slickX} ${slickY} Q ${(slickX + pragatiX) / 2 - 10} ${(slickY + pragatiY) / 2 + 5} ${pragatiX} ${pragatiY}`} fill="none" stroke="var(--color-flare)" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.6" />
-              <path d={`M ${slickX} ${slickY} Q ${(slickX + pragatiX) / 2 - 30} ${(slickY + pragatiY) / 2 + 25} ${pragatiX} ${pragatiY}`} fill="none" stroke="var(--color-sun)" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.6" />
-              
-              <g transform={`translate(${(slickX + pragatiX) / 2 - 60}, ${(slickY + pragatiY) / 2 + 35})`}>
-                <rect x="0" y="0" width="165" height="24" rx="2" fill="var(--color-inkwell)" stroke="var(--color-flare)" strokeWidth="0.8" />
-                <text x="8" y="16" fill="var(--color-flare)" fontFamily="var(--font-mono)" fontSize="10" fontWeight="bold">
-                  385 / 400 COMPATIBLE RUNS
+            {/* OBSERVED SLICK 2D POLYGON FOOTPRINT */}
+            {showFootprint && (
+              <g className="slick-polygon">
+                <polygon
+                  points={`${toMapX(72.58)},${toMapY(18.86)} ${toMapX(72.62)},${toMapY(18.86)} ${toMapX(72.62)},${toMapY(18.90)} ${toMapX(72.58)},${toMapY(18.90)}`}
+                  fill="var(--color-flare)"
+                  fillOpacity="0.14"
+                  stroke="var(--color-flare)"
+                  strokeWidth="1.5"
+                  strokeDasharray="4 3"
+                />
+                <text
+                  x={toMapX(72.58)}
+                  y={toMapY(18.90) - 8}
+                  fill="var(--color-flare)"
+                  fontFamily="var(--font-mono)"
+                  fontSize="9"
+                  letterSpacing="0.08em"
+                  fontWeight="bold"
+                >
+                  SENTINEL-1 SAR SLICK BOUNDARY (12.8 KM²)
                 </text>
               </g>
-            </g>
+            )}
+
+            {/* SIMULATION RAY STREAMLINES */}
+            {showStreamlines && candidateEndpoints.length > 0 && (
+              <g className="streamline-rays" opacity="0.45">
+                {candidateEndpoints.filter((_, i) => i % 8 === 0).map((pt, idx) => {
+                  const px = toMapX(pt.lon);
+                  const py = toMapY(pt.lat);
+                  const shipX = toMapX(selectedShip.current_position.lon);
+                  const shipY = toMapY(selectedShip.current_position.lat);
+                  const midX = (shipX + px) / 2 + (idx % 2 === 0 ? -15 : 15);
+                  const midY = (shipY + py) / 2 + (idx % 3 === 0 ? 10 : -10);
+                  return (
+                    <path
+                      key={`ray-${idx}`}
+                      d={`M ${shipX} ${shipY} Q ${midX} ${midY} ${px} ${py}`}
+                      fill="none"
+                      stroke={pt.compatible ? "var(--color-flare)" : "var(--color-line)"}
+                      strokeWidth="0.8"
+                      strokeDasharray="3 3"
+                    />
+                  );
+                })}
+              </g>
+            )}
+
+            {/* 400 MONTE CARLO SIMULATION ENDPOINTS */}
+            {showEndpoints && candidateEndpoints.length > 0 && (
+              <g className="monte-carlo-endpoints">
+                {candidateEndpoints.map((pt, idx) => {
+                  const px = toMapX(pt.lon);
+                  const py = toMapY(pt.lat);
+                  const isCompat = pt.compatible;
+                  return (
+                    <circle
+                      key={`pt-${idx}`}
+                      cx={px}
+                      cy={py}
+                      r={isCompat ? 2.5 : 1.8}
+                      fill={isCompat ? "var(--color-flare)" : "var(--color-fog)"}
+                      opacity={isCompat ? 0.85 : 0.35}
+                      stroke={isCompat ? "var(--color-sun)" : "none"}
+                      strokeWidth={isCompat ? 0.6 : 0}
+                    />
+                  );
+                })}
+              </g>
+            )}
 
             {/* PRAGATI VESSEL PIN */}
             <g transform={`translate(${pragatiX}, ${pragatiY})`} onClick={() => handleSelectShip(pragatiShip.mmsi)} className="cursor-pointer">
               <circle cx="0" cy="0" r="14" fill="var(--color-inkwell)" stroke="var(--color-flare)" strokeWidth={activeMmsi === pragatiShip.mmsi ? "3" : "1.5"} />
               <circle cx="0" cy="0" r="4.5" fill="var(--color-flare)" />
               <text x="18" y="4" fill="var(--color-white)" fontFamily="var(--font-display)" fontSize="12" fontWeight="bold">
-                PRAGATI (385 runs · 96.3%)
+                PRAGATI ({pragatiShip.attribution?.compatible_simulations || 319} runs · {Math.round((pragatiShip.attribution?.physical_consistency_fraction || 0.96) * 100)}%)
               </text>
             </g>
 

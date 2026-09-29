@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ShipData, DeadReckoningResult, ObservationPlanResult, EscapeInterceptResult } from "../types";
+import { ShipData, DeadReckoningResult, ObservationPlanResult, EscapeInterceptResult, AisTrustResult } from "../types";
 import { Micro, Icon, Action } from "./Icon";
 
 interface SatelliteTabProps {
@@ -9,6 +9,7 @@ interface SatelliteTabProps {
   deadReckoning?: DeadReckoningResult;
   observationPlan?: ObservationPlanResult;
   escapeIntercept?: EscapeInterceptResult;
+  aisTrust?: AisTrustResult;
 }
 
 export function SatelliteTab({
@@ -18,6 +19,7 @@ export function SatelliteTab({
   deadReckoning,
   observationPlan,
   escapeIntercept,
+  aisTrust,
 }: SatelliteTabProps) {
   const [activeMmsi, setActiveMmsi] = useState<string>(selectedMmsi || ships[0]?.mmsi || "IND-7319");
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
@@ -652,6 +654,97 @@ export function SatelliteTab({
                     </tr>
                   );
                 })}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {/* AIS TRUST & SAR RADAR FOOTPRINT CROSS-VERIFICATION */}
+        {aisTrust && (
+          <div className="tactical-panel mt-3">
+            <div className="flex justify-between items-center border-b border-line pb-2 mb-2">
+              <div className="flex items-center gap-2">
+                <span className="size-2 rounded-full bg-tide" />
+                <Micro className="text-tide">SPACEBORNE SAR RADAR FOOTPRINT & AIS TRUST AUDIT</Micro>
+              </div>
+              <div className="flex gap-2 font-mono text-micro">
+                <span className="px-2 py-0.5 rounded bg-kelp/20 border border-kelp/30 text-kelp font-bold">
+                  {aisTrust.matches?.length || 0} Radar Matches
+                </span>
+                <span className="px-2 py-0.5 rounded bg-flare/20 border border-flare/30 text-flare font-bold">
+                  {aisTrust.unmatched_sar_detections?.length || 0} Dark Radar Contacts
+                </span>
+                <span className="px-2 py-0.5 rounded bg-sun/20 border border-sun/30 text-sun font-bold">
+                  {aisTrust.ais_positions_without_sar_match_inside_scene?.length || 0} Ghost Transponders
+                </span>
+              </div>
+            </div>
+
+            <table className="tactical-table">
+              <thead>
+                <tr>
+                  <th>Target Type</th>
+                  <th>Detection ID / MMSI</th>
+                  <th>Spatial Offset</th>
+                  <th>Time Delta</th>
+                  <th>Correlation Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {aisTrust.matches?.map((m) => (
+                  <tr key={m.detection_id}>
+                    <td>
+                      <span className="flex items-center gap-2">
+                        <span className="size-2 rounded-full bg-kelp" />
+                        <span className="font-bold text-white font-mono">RADAR + AIS</span>
+                      </span>
+                    </td>
+                    <td className="text-white font-mono">{m.detection_id} ↔ {m.mmsi}</td>
+                    <td className="text-kelp font-mono">{m.distance_m.toFixed(1)} m</td>
+                    <td className="text-fog font-mono">{m.time_delta_seconds}s</td>
+                    <td>
+                      <span className="px-2 py-0.5 rounded text-micro bg-kelp/20 text-kelp font-mono border border-kelp/30 uppercase">
+                        VERIFIED CONTACT
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+                {aisTrust.unmatched_sar_detections?.map((d) => (
+                  <tr key={d.detection_id}>
+                    <td>
+                      <span className="flex items-center gap-2">
+                        <span className="size-2 rounded-full bg-flare animate-pulse" />
+                        <span className="font-bold text-flare font-mono">DARK TARGET</span>
+                      </span>
+                    </td>
+                    <td className="text-white font-mono">{d.detection_id} ({d.lat.toFixed(3)}°N, {d.lon.toFixed(3)}°E)</td>
+                    <td className="text-flare font-mono">No Transponder</td>
+                    <td className="text-fog font-mono">—</td>
+                    <td>
+                      <span className="px-2 py-0.5 rounded text-micro bg-flare/20 text-flare font-mono border border-flare/30 uppercase">
+                        RADAR ECHO ONLY (DARK SHIP)
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+                {aisTrust.ais_positions_without_sar_match_inside_scene?.map((a) => (
+                  <tr key={a.mmsi}>
+                    <td>
+                      <span className="flex items-center gap-2">
+                        <span className="size-2 rounded-full bg-sun" />
+                        <span className="font-bold text-sun font-mono">GHOST AIS</span>
+                      </span>
+                    </td>
+                    <td className="text-white font-mono">{a.mmsi}</td>
+                    <td className="text-sun font-mono">No Radar Reflection</td>
+                    <td className="text-fog font-mono">In-Scene</td>
+                    <td>
+                      <span className="px-2 py-0.5 rounded text-micro bg-sun/20 text-sun font-mono border border-sun/30 uppercase">
+                        UNVERIFIED TRANSPONDER
+                      </span>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

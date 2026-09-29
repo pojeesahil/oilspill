@@ -199,6 +199,12 @@ def get_dead_reckoning():
     data = get_or_compute_analysis()
     return data.get("dead_reckoning", {})
 
+@app.get("/api/satellite/ais-trust")
+def get_ais_trust():
+    """Cross-verify AIS reports against spaceborne Sentinel-1 SAR radar contacts."""
+    data = get_or_compute_analysis()
+    return data.get("ais_trust", {})
+
 @app.get("/api/satellite/observation-plan")
 def get_observation_plan():
     """Reconnaissance observation window ranking and hypothesis separation (Commit 4)."""
